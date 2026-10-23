@@ -1,0 +1,14 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+
+# F1 cached and downloaded data
+.fastf1-cache/
+data/
+
+# Testing
+.pytest_cache/
