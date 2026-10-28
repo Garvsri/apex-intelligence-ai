@@ -125,9 +125,8 @@ print(f"\nValid lap records: {len(laps)}")
 print(f"Dataset saved to: {csv_path}")
 
 # Compare Max Verstappen and Lewis Hamilton
-comparison = laps[
-    laps["Driver"].isin(["VER", "HAM"])
-].copy()
+# Analyze all drivers with available lap data
+comparison = laps.copy()
 
 if comparison.empty:
     print("VER/HAM data unavailable; showing available drivers.")

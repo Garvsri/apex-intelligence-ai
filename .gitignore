@@ -12,3 +12,5 @@ data/
 
 # Testing
 .pytest_cache/
+
+.chroma/
