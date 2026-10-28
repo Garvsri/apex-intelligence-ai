@@ -12,7 +12,6 @@ const CATEGORIES = [
 
 function HoloPart({ geometry, position = [0, 0, 0], rotation = [0, 0, 0], category = "chassis", selected, dense = false }) {
   const active = selected === category || selected === "all";
-  const lineColor = active ? "#65f5ff" : "#65f5ff";
   const fillColor = "#073348";
   const edges = useMemo(
     () => dense ? new THREE.WireframeGeometry(geometry) : new THREE.EdgesGeometry(geometry, 22),
@@ -39,15 +38,27 @@ function BoxPart({ args, position, rotation, category, selected, dense = false }
   return <HoloPart geometry={geometry} position={position} rotation={rotation} category={category} selected={selected} dense={dense} />;
 }
 
+
 function Rod({ start, end, selected, category = "chassis" }) {
   const a = new THREE.Vector3(...start);
   const b = new THREE.Vector3(...end);
   const direction = b.clone().sub(a);
-  const geometry = useMemo(() => new THREE.CylinderGeometry(0.014, 0.014, direction.length(), 6), [direction.length()]);
-  const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
+  const length = direction.length();
+
+  const geometry = new THREE.CylinderGeometry(0.014,0.014,length,6);
+  const quaternion = new THREE.Quaternion().setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    direction.clone().normalize()
+  );
+
   const active = selected === "all" || selected === category;
+
   return (
-    <mesh geometry={geometry} position={a.add(b).multiplyScalar(0.5)} quaternion={quaternion}>
+    <mesh
+      geometry={geometry}
+      position={a.add(b).multiplyScalar(0.5)}
+      quaternion={quaternion}
+    >
       <meshBasicMaterial color={active ? "#ff4658" : "#65f5ff"} />
     </mesh>
   );

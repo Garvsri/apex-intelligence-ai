@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from apex.analytics import (
     compare_driver_pace,
     grand_prix_driver_performance,
+    grand_prix_lap_times,
     season_driver_leaderboard,
 )
 from apex.agent import ask_apex
@@ -108,17 +109,23 @@ def race_performance(season: int, grand_prix: str):
             status_code=500,
             detail="Race performance analysis failed. Check the server terminal.",
         ) from exc
-@app.get("/race/{season}/{grand_prix}/performance")
-def race_performance(season: int, grand_prix: str):
+@app.get("/race/{season}/{grand_prix}/laps")   
+def race_lap_times(
+    season: int,
+    grand_prix: str,
+    drivers: str = "HAM,VER",
+):
     try:
-        return grand_prix_driver_performance(season, grand_prix)
+        driver_codes = drivers.split(",")
+        return grand_prix_lap_times(
+            season, grand_prix, driver_codes
+        )
     except ValueError as exc:
         raise HTTPException(
-            status_code=404,
-            detail=str(exc),
+            status_code=404, detail=str(exc)
         ) from exc
     except Exception as exc:
         raise HTTPException(
             status_code=500,
-            detail="Race performance analysis failed. Check the server terminal.",
+            detail="Lap-time analysis failed. Check the server terminal.",
         ) from exc

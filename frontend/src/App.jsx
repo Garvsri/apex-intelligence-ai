@@ -1,8 +1,7 @@
-
 import RaceScene from "./components/RaceScene";
 import { useEffect, useState } from "react";
 import {
-  Activity, BrainCircuit, Gauge, Flag, Zap, Radio,
+  Activity, BrainCircuit, Gauge, Flag, Zap,
   Timer, ChevronRight, Send, RefreshCw, CircleDot,
 } from "lucide-react";
 import {
@@ -12,18 +11,6 @@ import {
 import "./App.css";
 
 const API = "http://127.0.0.1:8000";
-
-const paceData = [
-  { lap: 10, ham: 95.1, ver: 95.4 },
-  { lap: 15, ham: 94.8, ver: 95.0 },
-  { lap: 20, ham: 94.4, ver: 94.7 },
-  { lap: 25, ham: 94.6, ver: 94.5 },
-  { lap: 30, ham: 94.2, ver: 94.6 },
-  { lap: 35, ham: 94.5, ver: 94.3 },
-  { lap: 40, ham: 94.1, ver: 94.4 },
-  { lap: 45, ham: 94.3, ver: 94.2 },
-  { lap: 50, ham: 94.0, ver: 94.2 },
-];
 
 const tyreData = Array.from({ length: 11 }, (_, i) => ({
   lap: i * 5,
@@ -51,6 +38,9 @@ function App() {
   const [driverA, setDriverA] = useState("HAM");
   const [driverB, setDriverB] = useState("VER");
   const [apiStatus, setApiStatus] = useState("CHECKING");
+  const [paceData, setPaceData] = useState([]);
+  const [paceLoading, setPaceLoading] = useState(true);
+  const [paceError, setPaceError] = useState("");
 
   useEffect(() => {
     fetch(`${API}/health`)
@@ -61,6 +51,46 @@ function App() {
       .then(() => setApiStatus("CONNECTED"))
       .catch(() => setApiStatus("OFFLINE"));
   }, []);
+  
+useEffect(() => {
+  let cancelled = false;
+
+  async function loadLapTimes() {
+    setPaceLoading(true);
+    setPaceError("");
+
+    try {
+      const response = await fetch(
+        `${API}/race/2024/British%20Grand%20Prix/laps?drivers=HAM,VER`
+      );
+
+      if (!response.ok) {
+        throw new Error("Could not load race lap times.");
+      }
+
+      const result = await response.json();
+
+      if (!cancelled) {
+        setPaceData(result.laps);
+      }
+    } catch (error) {
+      if (!cancelled) {
+        setPaceError(error.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setPaceLoading(false);
+      }
+    }
+  }
+
+  loadLapTimes();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
+
 
   async function askApex(e) {
     e.preventDefault();
@@ -99,10 +129,6 @@ function App() {
       setComparison({ error: err.message });
     }
   }
-
-  useEffect(() => {
-    compareDrivers();
-  }, []);
 
   const gap = comparison?.mean_gap_seconds;
   const gapText = Number.isFinite(gap)
@@ -147,21 +173,62 @@ function App() {
             <div className="small-note">Mean recorded lap duration Â· seconds</div>
           </Panel>
 
+          
           <Panel title="LAP TIME TREND">
-            <div className="chart-box small-chart">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={paceData}>
-                  <CartesianGrid stroke="#282d35" strokeDasharray="3 3" />
-                  <XAxis dataKey="lap" stroke="#7e8794" tick={{ fontSize: 9 }} />
-                  <YAxis domain={["dataMin - 0.3", "dataMax + 0.3"]} stroke="#7e8794" tick={{ fontSize: 9 }} />
-                  <Tooltip contentStyle={{ background: "#11151b", border: "1px solid #373d47" }} />
-                  <Line dataKey="ham" name="HAM" stroke="#ff4b52" dot={false} strokeWidth={2} />
-                  <Line dataKey="ver" name="VER" stroke="#dce2e9" dot={false} strokeWidth={2} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-            <div className="legend"><span className="red-dot" /> HAM <span className="white-dot" /> VER</div>
+            {paceLoading ? (
+              <p>Loading real race lap times...</p>
+            ) : paceError ? (
+              <p className="error-text">{paceError}</p>
+            ) : (
+              <>
+                <div className="chart-box small-chart">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={paceData}>
+                      <CartesianGrid stroke="#282d35" strokeDasharray="3 3" />
+                      <XAxis
+                        dataKey="lap"
+                        stroke="#7e8794"
+                        tick={{ fontSize: 9 }}
+                      />
+                      <YAxis
+                        domain={["dataMin - 0.3", "dataMax + 0.3"]}
+                        stroke="#7e8794"
+                        tick={{ fontSize: 9 }}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          background: "#11151b",
+                          border: "1px solid #373d47",
+                        }}
+                      />
+                      <Line
+                        dataKey="HAM"
+                        name="HAM"
+                        stroke="#ff4b52"
+                        dot={false}
+                        strokeWidth={2}
+                        connectNulls={false}
+                      />
+                      <Line
+                        dataKey="VER"
+                        name="VER"
+                        stroke="#dce2e9"
+                        dot={false}
+                        strokeWidth={2}
+                        connectNulls={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+
+                <div className="legend">
+                  <span className="red-dot" /> HAM
+                  <span className="white-dot" /> VER
+                </div>
+              </>
+            )}
           </Panel>
+
 
           <Panel title="DATA INTEGRITY">
             <div className="integrity-stat"><Activity size={17} /><span>Valid lap records</span><b>914</b></div>

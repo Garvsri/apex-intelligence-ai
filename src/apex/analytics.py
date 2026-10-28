@@ -307,3 +307,114 @@ def grand_prix_driver_performance(
             "fastest-lap classification."
         ),
     }
+
+def grand_prix_lap_times(
+    season: int,
+    grand_prix: str,
+    drivers: list[str] | None = None,
+) -> dict:
+    """Return lap-by-lap timing data for selected drivers in a Grand Prix."""
+    from apex.data_loader import list_datasets, load_dataset
+
+    if not isinstance(season, int) or isinstance(season, bool):
+        raise ValueError("Season must be an integer.")
+
+    if not isinstance(grand_prix, str) or not grand_prix.strip():
+        raise ValueError("Grand Prix name must be a non-empty string.")
+
+    selected_drivers = [
+        driver.strip().upper()
+        for driver in (drivers or ["HAM", "VER"])
+        if driver.strip()
+    ]
+
+    if not selected_drivers:
+        raise ValueError("At least one driver code is required.")
+
+    matches = [
+        entry for entry in list_datasets()
+        if entry["season"] == season
+        and entry["session_type"] == "R"
+        and entry["grand_prix"].casefold() == grand_prix.strip().casefold()
+    ]
+
+    if not matches:
+        raise ValueError(
+            f"No race dataset found for {grand_prix} in {season}."
+        )
+
+    matches.sort(
+        key=lambda entry: (
+            entry.get("status") != "imported",
+            entry["dataset_id"],
+        )
+    )
+
+    metadata, laps = load_dataset(matches[0]["dataset_id"])
+
+    required = {"Driver", "lap_duration", "lap_number"}
+    missing = required - set(laps.columns)
+    if missing:
+        raise ValueError(f"Dataset is missing columns: {sorted(missing)}")
+
+    frame = laps.copy()
+    frame["Driver"] = frame["Driver"].astype("string").str.strip().str.upper()
+    frame["lap_duration"] = pd.to_numeric(
+        frame["lap_duration"], errors="coerce"
+    )
+    frame["lap_number"] = pd.to_numeric(
+        frame["lap_number"], errors="coerce"
+    )
+
+    frame = frame.dropna(subset=["Driver", "lap_duration", "lap_number"])
+    frame = frame[frame["lap_duration"] > 0]
+
+    if "is_pit_out_lap" in frame.columns:
+        pit_out = (
+            frame["is_pit_out_lap"]
+            .astype("string")
+            .str.strip()
+            .str.lower()
+            .isin(["true", "1", "yes"])
+        )
+        frame = frame[~pit_out]
+
+    frame = frame[frame["Driver"].isin(selected_drivers)]
+
+    if frame.empty:
+        raise ValueError("No valid laps found for the selected drivers.")
+
+    frame["lap_number"] = frame["lap_number"].astype(int)
+
+    pivot = frame.pivot_table(
+        index="lap_number",
+        columns="Driver",
+        values="lap_duration",
+        aggfunc="mean",
+    ).sort_index()
+
+    lap_records = []
+    for lap_number, row in pivot.iterrows():
+        record = {"lap": int(lap_number)}
+        for driver in selected_drivers:
+            value = row.get(driver)
+            record[driver] = (
+                round(float(value), 3)
+                if value is not None and pd.notna(value)
+                else None
+            )
+        lap_records.append(record)
+
+    return {
+        "season": season,
+        "grand_prix": metadata["grand_prix"],
+        "dataset_id": metadata["dataset_id"],
+        "drivers": selected_drivers,
+        "laps": lap_records,
+        "metric_note": (
+            "Lap times are in seconds. Missing values mean no valid lap "
+            "was available for that driver on that lap number. "
+            "Traffic, tyres, fuel load, and safety cars affect lap times."
+        ),
+    }
+
