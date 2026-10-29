@@ -7,6 +7,7 @@ from apex.analytics import (
     compare_driver_pace,
     grand_prix_driver_performance,
     grand_prix_lap_times,
+    grand_prix_tyre_stints,
     season_driver_leaderboard,
 )
 from apex.agent import ask_apex
@@ -189,3 +190,18 @@ def available_race_drivers(season: int, grand_prix: str):
         "grand_prix": grand_prix,
         "drivers": drivers,
     }
+
+@app.get("/race/{season}/{grand_prix}/stints")
+def race_tyre_stints(season: int, grand_prix: str):
+    try:
+        return grand_prix_tyre_stints(season, grand_prix)
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail="Tyre stint analysis failed. Check the server terminal.",
+        ) from exc

@@ -418,3 +418,203 @@ def grand_prix_lap_times(
         ),
     }
 
+def grand_prix_tyre_stints(
+    season: int,
+    grand_prix: str,
+) -> dict:
+    """Summarize driver tyre stints for a registered Grand Prix."""
+    from apex.data_loader import list_datasets, load_dataset
+
+    if not isinstance(season, int) or isinstance(season, bool):
+        raise ValueError("Season must be an integer.")
+
+    if not isinstance(grand_prix, str) or not grand_prix.strip():
+        raise ValueError("Grand Prix name must be a non-empty string.")
+
+    matches = [
+        entry for entry in list_datasets()
+        if entry["season"] == season
+        and entry["session_type"] == "R"
+        and entry["grand_prix"].casefold() == grand_prix.strip().casefold()
+        and entry.get("status") == "imported"
+    ]
+
+    if not matches:
+        raise ValueError(
+            f"No imported race dataset found for {grand_prix} in {season}."
+        )
+
+    required_tyre_columns = {"compound", "stint", "tyre_life"}
+
+    # Prefer a dataset with actual tyre metadata.
+    selected = None
+    laps = None
+
+    for entry in matches:
+        _, candidate = load_dataset(entry["dataset_id"])
+        if required_tyre_columns.issubset(candidate.columns):
+            selected = entry
+            laps = candidate
+            break
+
+    if selected is None or laps is None:
+        raise ValueError(
+            f"No tyre metadata is available for {grand_prix} in {season}."
+        )
+
+    frame = laps.copy()
+
+    frame["Driver"] = (
+        frame["Driver"].astype("string").str.strip().str.upper()
+    )
+
+    for column in (
+        "lap_number",
+        "lap_duration",
+        "stint",
+        "tyre_life",
+    ):
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+
+    frame = frame.dropna(
+        subset=["Driver", "lap_number", "lap_duration", "stint"]
+    )
+    frame = frame[
+        (frame["lap_duration"] > 0)
+        & (frame["lap_number"] > 0)
+        & (frame["stint"] > 0)
+    ]
+
+    if frame.empty:
+        raise ValueError("No valid tyre stint records were found.")
+
+    frame["stint"] = frame["stint"].astype(int)
+    frame["lap_number"] = frame["lap_number"].astype(int)
+
+    if "compound" not in frame.columns:
+        frame["compound"] = pd.NA
+
+    frame["compound"] = (
+        frame["compound"].astype("string").str.upper()
+    )
+
+    if "is_pit_out_lap" in frame.columns:
+        pit_out = (
+            frame["is_pit_out_lap"]
+            .astype("string")
+            .str.strip()
+            .str.lower()
+            .isin(["true", "1", "yes"])
+        )
+    else:
+        pit_out = pd.Series(False, index=frame.index)
+
+    frame["is_pit_out_lap_normalized"] = pit_out
+
+    
+    summaries = []
+
+    for driver, driver_laps in frame.groupby("Driver", sort=True):
+        driver_laps = driver_laps.sort_values(
+            ["lap_number", "stint"]
+        )
+
+        for stint_number, group in driver_laps.groupby(
+            "stint", sort=True
+        ):
+            valid_laps = group.sort_values("lap_number")
+
+            compound_values = (
+                valid_laps["compound"].dropna().unique().tolist()
+            )
+            tyre_life = valid_laps["tyre_life"].dropna()
+
+            pit_in = pd.to_numeric(
+                valid_laps.get(
+                    "pit_in_time_seconds",
+                    pd.Series(index=valid_laps.index, dtype=float),
+                ),
+                errors="coerce",
+            ).dropna()
+
+            pit_out_times = pd.to_numeric(
+                valid_laps.loc[
+                    valid_laps["is_pit_out_lap_normalized"],
+                    "pit_out_time_seconds",
+                ],
+                errors="coerce",
+            ).dropna()
+
+            summaries.append({
+                "driver": str(driver),
+                "stint": int(stint_number),
+                "compound": (
+                    compound_values[0] if compound_values else None
+                ),
+                "start_lap": int(valid_laps["lap_number"].min()),
+                "end_lap": int(valid_laps["lap_number"].max()),
+                "lap_records": int(len(valid_laps)),
+                "mean_lap_seconds": round(
+                    float(valid_laps["lap_duration"].mean()), 3
+                ),
+                "median_lap_seconds": round(
+                    float(valid_laps["lap_duration"].median()), 3
+                ),
+                "tyre_life_start": (
+                    float(tyre_life.iloc[0])
+                    if not tyre_life.empty else None
+                ),
+                "tyre_life_end": (
+                    float(tyre_life.iloc[-1])
+                    if not tyre_life.empty else None
+                ),
+                "pit_in_session_seconds": (
+                    round(float(pit_in.iloc[-1]), 3)
+                    if not pit_in.empty else None
+                ),
+                "pit_out_session_seconds": (
+                    round(float(pit_out_times.iloc[0]), 3)
+                    if not pit_out_times.empty else None
+                ),
+                "pit_out_lap_records": int(
+                    valid_laps["is_pit_out_lap_normalized"].sum()
+                ),
+                
+            })
+                # Link each stint to the pit transition that entered it.
+    previous_stints = {}
+
+    for summary in summaries:
+        driver = summary["driver"]
+        previous = previous_stints.get(driver)
+
+        if previous is not None:
+            summary["pit_transition"] = {
+                "from_stint": previous["stint"],
+                "to_stint": summary["stint"],
+                "pit_in_session_seconds": previous[
+                    "pit_in_session_seconds"
+                ],
+                "pit_out_session_seconds": summary[
+                    "pit_out_session_seconds"
+                ],
+            }
+        else:
+            summary["pit_transition"] = None
+
+        previous_stints[driver] = summary
+
+    return {
+        "season": season,
+        "grand_prix": selected["grand_prix"],
+        "dataset_id": selected["dataset_id"],
+        "stints": summaries,
+        "metric_note": (
+            "Stint summaries use available timed lap records. Lap-record "
+            "counts are not guaranteed to equal official stint lengths. "
+            "Pit-in and pit-out values are session-relative timestamps, "
+            "not stationary pit-stop durations. Lap times are affected by "
+            "traffic, weather, fuel load, safety cars, and track conditions."
+        ),
+    }
+

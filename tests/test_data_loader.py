@@ -48,3 +48,31 @@ def test_invalid_lap_duration_raises_error(tmp_path):
 
     with pytest.raises(ValueError, match="non-positive lap durations"):
         load_laps(invalid_file)
+
+def test_load_laps_preserves_optional_tyre_metadata(tmp_path):
+    path = tmp_path / "laps_with_tyre_data.csv"
+
+    data = {
+        "Driver": ["HAM"],
+        "driver_number": [44],
+        "lap_number": [1],
+        "lap_duration": [94.2],
+        "duration_sector_1": [32.0],
+        "duration_sector_2": [37.0],
+        "duration_sector_3": [25.2],
+        "is_pit_out_lap": [False],
+        "compound": ["MEDIUM"],
+        "tyre_life": [5.0],
+        "stint": [1],
+        "pit_in_time_seconds": [None],
+        "pit_out_time_seconds": [None],
+    }
+
+    pd.DataFrame(data).to_csv(path, index=False)
+    laps = load_laps(path)
+
+    assert laps.loc[0, "compound"] == "MEDIUM"
+    assert laps.loc[0, "tyre_life"] == 5.0
+    assert laps.loc[0, "stint"] == 1
+    assert pd.isna(laps.loc[0, "pit_in_time_seconds"])
+    assert pd.isna(laps.loc[0, "pit_out_time_seconds"])

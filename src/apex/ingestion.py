@@ -12,7 +12,7 @@ from apex.data_loader import (
     load_manifest,
 )
 def normalize_fastf1_laps(laps: pd.DataFrame) -> pd.DataFrame:
-    """Convert a FastF1 laps DataFrame into Apex's standard schema."""
+    """Normalize FastF1 lap timing plus optional tyre and pit metadata."""
     required_source_columns = {
         "Driver",
         "DriverNumber",
@@ -21,7 +21,6 @@ def normalize_fastf1_laps(laps: pd.DataFrame) -> pd.DataFrame:
         "Sector1Time",
         "Sector2Time",
         "Sector3Time",
-        "PitOutTime",
     }
 
     missing = required_source_columns - set(laps.columns)
@@ -29,6 +28,18 @@ def normalize_fastf1_laps(laps: pd.DataFrame) -> pd.DataFrame:
         raise ValueError(
             f"FastF1 data is missing columns: {sorted(missing)}"
         )
+
+    # Optional fields are handled gracefully when older data lacks them.
+    pit_out = (
+        laps["PitOutTime"]
+        if "PitOutTime" in laps.columns
+        else pd.Series(pd.NaT, index=laps.index)
+    )
+    pit_in = (
+        laps["PitInTime"]
+        if "PitInTime" in laps.columns
+        else pd.Series(pd.NaT, index=laps.index)
+    )
 
     normalized = pd.DataFrame({
         "Driver": laps["Driver"],
@@ -38,7 +49,24 @@ def normalize_fastf1_laps(laps: pd.DataFrame) -> pd.DataFrame:
         "duration_sector_1": laps["Sector1Time"].map(_seconds),
         "duration_sector_2": laps["Sector2Time"].map(_seconds),
         "duration_sector_3": laps["Sector3Time"].map(_seconds),
-        "is_pit_out_lap": laps["PitOutTime"].notna(),
+        "is_pit_out_lap": pit_out.notna(),
+        "compound": (
+            laps["Compound"].astype("string").str.upper()
+            if "Compound" in laps.columns
+            else pd.Series(pd.NA, index=laps.index, dtype="string")
+        ),
+        "tyre_life": (
+            pd.to_numeric(laps["TyreLife"], errors="coerce")
+            if "TyreLife" in laps.columns
+            else pd.Series(float("nan"), index=laps.index)
+        ),
+        "stint": (
+            pd.to_numeric(laps["Stint"], errors="coerce")
+            if "Stint" in laps.columns
+            else pd.Series(float("nan"), index=laps.index)
+        ),
+        "pit_in_time_seconds": pit_in.map(_seconds),
+        "pit_out_time_seconds": pit_out.map(_seconds),
     })
 
     normalized["Driver"] = (
@@ -52,16 +80,16 @@ def normalize_fastf1_laps(laps: pd.DataFrame) -> pd.DataFrame:
         "duration_sector_1",
         "duration_sector_2",
         "duration_sector_3",
+        "tyre_life",
+        "stint",
+        "pit_in_time_seconds",
+        "pit_out_time_seconds",
     ):
         normalized[column] = pd.to_numeric(
             normalized[column], errors="coerce"
         )
 
-    # Keep rows with a recorded lap time; incomplete sector times
-    # can remain missing in the source data.
-    normalized = normalized.dropna(
-        subset=["Driver", "lap_duration"]
-    )
+    normalized = normalized.dropna(subset=["Driver", "lap_duration"])
     normalized = normalized[normalized["lap_duration"] > 0]
 
     if normalized.empty:
@@ -71,8 +99,6 @@ def normalize_fastf1_laps(laps: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("Normalized data does not match Apex's schema.")
 
     return normalized.reset_index(drop=True)
-
-
 
 def ingest_f1_session(
     year: int,

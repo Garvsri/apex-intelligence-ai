@@ -13,16 +13,33 @@ class FakeSession:
         return None
 
 
+
 def sample_laps():
     return pd.DataFrame({
-        "Driver": ["HAM"],
-        "DriverNumber": [44],
-        "LapNumber": [1],
-        "LapTime": [pd.Timedelta(90, unit="s")],
-        "Sector1Time": [pd.Timedelta(30, unit="s")],
-        "Sector2Time": [pd.Timedelta(35, unit="s")],
-        "Sector3Time": [pd.Timedelta(25, unit="s")],
-        "PitOutTime": [pd.NaT],
+        "Driver": ["HAM", "VER"],
+        "DriverNumber": [44, 1],
+        "LapNumber": [1, 2],
+        "LapTime": [
+            pd.Timedelta(90, unit="s"),
+            pd.Timedelta(91, unit="s"),
+        ],
+        "Sector1Time": [
+            pd.Timedelta(30, unit="s"),
+            pd.Timedelta(31, unit="s"),
+        ],
+        "Sector2Time": [
+            pd.Timedelta(35, unit="s"),
+            pd.Timedelta(35, unit="s"),
+        ],
+        "Sector3Time": [
+            pd.Timedelta(25, unit="s"),
+            pd.Timedelta(25, unit="s"),
+        ],
+        "PitOutTime": [pd.NaT, pd.Timedelta(400, unit="s")],
+        "PitInTime": [pd.NaT, pd.NaT],
+        "Compound": ["MEDIUM", "SOFT"],
+        "TyreLife": [3.0, 1.0],
+        "Stint": [1, 2],
     })
 
 
@@ -49,8 +66,21 @@ def test_ingestion_registers_dataset(tmp_path, monkeypatch):
         2024, "British Grand Prix", "R", "test_2024_race"
     )
 
-    assert result["rows_imported"] == 1
+    assert result["rows_imported"] == 2
     assert (processed / "test_2024_race.csv").exists()
+
+    # Verify the tyre and pit metadata was saved to CSV.
+    saved = pd.read_csv(processed / "test_2024_race.csv")
+
+    assert saved.loc[0, "compound"] == "MEDIUM"
+    assert saved.loc[1, "compound"] == "SOFT"
+    assert saved.loc[0, "tyre_life"] == 3.0
+    assert saved.loc[1, "stint"] == 2
+    assert bool(saved.loc[1, "is_pit_out_lap"])
+    assert "pit_in_time_seconds" in saved.columns
+    assert "pit_out_time_seconds" in saved.columns
+
+    # Verify the dataset was registered in the manifest.
     assert len(
         __import__("json").loads(
             manifest_path.read_text(encoding="utf-8")
