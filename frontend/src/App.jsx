@@ -34,12 +34,17 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
+  const [availableDrivers, setAvailableDrivers] = useState([]);
+  const [, setDriversLoading] = useState(false);
   const [comparison, setComparison] = useState(null);
-  const [driverA, setDriverA] = useState("HAM");
-  const [driverB, setDriverB] = useState("VER");
   const [apiStatus, setApiStatus] = useState("CHECKING");
   const [paceData, setPaceData] = useState([]);
   const [paceLoading, setPaceLoading] = useState(true);
+  const [raceOptions, setRaceOptions] = useState([]);
+  const [selectedSeason, setSelectedSeason] = useState(2024);
+  const [selectedRace, setSelectedRace] = useState("British Grand Prix");
+  const [selectedDriverA, setSelectedDriverA] = useState("HAM");
+  const [selectedDriverB, setSelectedDriverB] = useState("VER");
   const [paceError, setPaceError] = useState("");
 
   useEffect(() => {
@@ -51,7 +56,7 @@ function App() {
       .then(() => setApiStatus("CONNECTED"))
       .catch(() => setApiStatus("OFFLINE"));
   }, []);
-  
+
 useEffect(() => {
   let cancelled = false;
 
@@ -61,7 +66,9 @@ useEffect(() => {
 
     try {
       const response = await fetch(
-        `${API}/race/2024/British%20Grand%20Prix/laps?drivers=HAM,VER`
+        `${API}/race/${selectedSeason}/${encodeURIComponent(
+          selectedRace
+        )}/laps?drivers=${selectedDriverA},${selectedDriverB}`
       );
 
       if (!response.ok) {
@@ -71,7 +78,7 @@ useEffect(() => {
       const result = await response.json();
 
       if (!cancelled) {
-        setPaceData(result.laps);
+        setPaceData(result.laps ?? []);
       }
     } catch (error) {
       if (!cancelled) {
@@ -89,9 +96,7 @@ useEffect(() => {
   return () => {
     cancelled = true;
   };
-}, []);
-
-
+}, [selectedSeason, selectedRace, selectedDriverA, selectedDriverB]);
   async function askApex(e) {
     e.preventDefault();
     if (!question.trim()) return;
@@ -113,27 +118,185 @@ useEffect(() => {
     }
   }
 
-  async function compareDrivers(e) {
-    e?.preventDefault();
-    setComparison(null);
+useEffect(() => {
+  let cancelled = false;
+
+  async function loadRaceOptions() {
     try {
-      const response = await fetch(`${API}/compare`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ driver_a: driverA, driver_b: driverB }),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(JSON.stringify(data.detail || data));
-      setComparison(data);
-    } catch (err) {
-      setComparison({ error: err.message });
+      const response = await fetch(`${API}/races`);
+
+      if (!response.ok) {
+        throw new Error("Could not load available races.");
+      }
+
+      const result = await response.json();
+
+      if (!cancelled) {
+        setRaceOptions(result.races ?? []);
+
+        const availableSeasons = result.seasons ?? [];
+
+        if (availableSeasons.length > 0) {
+          const initialSeason = availableSeasons.includes(2024)
+            ? 2024
+            : availableSeasons[0];
+
+          setSelectedSeason(initialSeason);
+
+          const firstRace = (result.races ?? []).find(
+            (race) => race.season === initialSeason
+          );
+
+          if (firstRace) {
+            setSelectedRace(firstRace.grand_prix);
+          }
+        }
+      }
+    } catch (error) {
+      console.error("Race options:", error);
     }
   }
 
-  const gap = comparison?.mean_gap_seconds;
-  const gapText = Number.isFinite(gap)
-    ? `${gap > 0 ? "+" : ""}${gap.toFixed(3)} s`
-    : "â€”";
+  loadRaceOptions();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
+
+useEffect(() => {
+  if (!selectedSeason || !selectedRace) return;
+
+  let cancelled = false;
+
+  async function loadDrivers() {
+    setDriversLoading(true);
+
+    try {
+      const response = await fetch(
+        `${API}/race/${selectedSeason}/${encodeURIComponent(selectedRace)}/drivers`
+      );
+
+      if (!response.ok) {
+        throw new Error("Could not load drivers for this race.");
+      }
+
+      const result = await response.json();
+
+      if (!cancelled) {
+        const drivers = result.drivers ?? [];
+        setAvailableDrivers(drivers);
+
+        setSelectedDriverA((current) =>
+          drivers.includes(current) ? current : drivers[0] ?? ""
+        );
+
+        setSelectedDriverB((current) =>
+          drivers.includes(current) && current !== drivers[0]
+            ? current
+            : drivers.find((driver) => driver !== drivers[0]) ?? ""
+        );
+      }
+    } catch (error) {
+      if (!cancelled) {
+        console.error("Driver options:", error);
+        setAvailableDrivers([]);
+      }
+    } finally {
+      if (!cancelled) {
+        setDriversLoading(false);
+      }
+    }
+  }
+
+  loadDrivers();
+
+  return () => {
+    cancelled = true;
+  };
+}, [selectedSeason, selectedRace]);
+
+
+async function compareDrivers(e) {
+  e?.preventDefault();
+  setComparison(null);
+
+  if (selectedDriverA === selectedDriverB) {
+    setComparison({
+      error: "Choose two different drivers for a meaningful comparison.",
+    });
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `${API}/race/${selectedSeason}/${encodeURIComponent(
+        selectedRace
+      )}/laps?drivers=${encodeURIComponent(
+        `${selectedDriverA},${selectedDriverB}`
+      )}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        typeof data.detail === "string"
+          ? data.detail
+          : "Could not compare drivers for this race."
+      );
+    }
+
+    const laps = data.laps ?? [];
+
+    const getMean = (driver) => {
+      const times = laps
+        .map((lap) => lap[driver])
+        .filter(
+          (time) =>
+            typeof time === "number" &&
+            Number.isFinite(time) &&
+            time > 0
+        );
+
+      return {
+        mean_lap_seconds: times.length
+          ? times.reduce((sum, time) => sum + time, 0) / times.length
+          : null,
+        valid_laps: times.length,
+      };
+    };
+
+    const driverAStats = getMean(selectedDriverA);
+    const driverBStats = getMean(selectedDriverB);
+
+    if (
+      driverAStats.mean_lap_seconds === null ||
+      driverBStats.mean_lap_seconds === null
+    ) {
+      throw new Error(
+        "Insufficient valid lap data for one or both selected drivers."
+      );
+    }
+
+    setComparison({
+      [selectedDriverA]: driverAStats,
+      [selectedDriverB]: driverBStats,
+      mean_gap_seconds:
+        driverAStats.mean_lap_seconds -
+        driverBStats.mean_lap_seconds,
+    });
+  } catch (err) {
+    setComparison({ error: err.message });
+  }
+}
+
+const gap = comparison?.mean_gap_seconds;
+
+const gapText = Number.isFinite(gap)
+  ? `${gap > 0 ? "+" : ""}${gap.toFixed(3)} s`
+  : "—";
+
 
   return (
     <div className="dashboard">
@@ -150,30 +313,136 @@ useEffect(() => {
         </div>
       </header>
 
-      <div className="session-strip">
-        <div className="session-brand"><span className="f1-mark">APEX //</span> RACE DATA & INTELLIGENCE</div>
-        <div>SESSION: <b>2024 BRITISH GP</b></div>
-        <div>CIRCUIT: <b>SILVERSTONE</b></div>
-        <div className="historical-tag"><CircleDot size={10} /> HISTORICAL DATA</div>
-      </div>
+<div className="race-selector-strip">
+  <label>
+    SEASON
+    <select
+      onChange={(e) => {
+  const season = Number(e.target.value);
+  setComparison(null);
+  setSelectedSeason(season);
 
+  const firstRace = raceOptions.find(
+    (race) => race.season === season
+  );
+
+  if (firstRace) {
+    setSelectedRace(firstRace.grand_prix);
+  }
+}}
+    >
+      {[...new Set(raceOptions.map((race) => race.season))]
+        .sort((a, b) => b - a)
+        .map((season) => (
+          <option key={season} value={season}>
+            {season}
+          </option>
+        ))}
+    </select>
+  </label>
+
+  <label>
+    GRAND PRIX
+    <select
+      value={selectedRace}
+      onChange={(e) => {
+  setComparison(null);
+  setSelectedRace(e.target.value);
+}}
+    >
+      {raceOptions
+        .filter((race) => race.season === selectedSeason)
+        .map((race) => (
+          <option key={race.dataset_id} value={race.grand_prix}>
+            {race.grand_prix}
+          </option>
+        ))}
+    </select>
+  </label>
+
+  <label>
+    DRIVER A
+    <select
+      value={selectedDriverA}
+      onChange={(e) => {
+  setComparison(null);
+  setSelectedDriverA(e.target.value);
+}}
+    >
+      {availableDrivers.map((driver) => (
+        <option key={driver} value={driver}>
+          {driver}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label>
+    DRIVER B
+    <select
+      value={selectedDriverB}
+      onChange={(e) => {
+  setComparison(null);
+  setSelectedDriverB(e.target.value);
+}}
+    >
+      {availableDrivers.map((driver) => (
+        <option key={driver} value={driver}>
+          {driver}
+        </option>
+      ))}
+    </select>
+  </label>
+</div>
+
+<div className="session-strip">
+  <div className="session-brand">
+    <span className="f1-mark">APEX //</span> RACE DATA & INTELLIGENCE
+  </div>
+  <div>
+    SESSION: <b>{selectedSeason} {selectedRace.toUpperCase()}</b>
+  </div>
+  <div className="historical-tag">
+    <CircleDot size={10} /> HISTORICAL DATA
+  </div>
+</div>
       <main id="overview" className="command-grid">
         <aside className="left-column">
-          <Panel title="DRIVER PACE MONITOR">
-            <div className="driver-row">
-              <span className="driver-stripe ham" />
-              <div><b>Lewis Hamilton</b><small>HAM Â· Mercedes</small></div>
-              <strong>{comparison?.HAM?.mean_lap_seconds?.toFixed(3) ?? "â€”"}<small>s</small></strong>
-            </div>
-            <div className="driver-row">
-              <span className="driver-stripe ver" />
-              <div><b>Max Verstappen</b><small>VER Â· Red Bull</small></div>
-              <strong>{comparison?.VER?.mean_lap_seconds?.toFixed(3) ?? "â€”"}<small>s</small></strong>
-            </div>
-            <div className="small-note">Mean recorded lap duration Â· seconds</div>
-          </Panel>
 
-          
+<Panel title="DRIVER PACE MONITOR">
+  {[selectedDriverA, selectedDriverB].map((driver, index) => {
+    const times = paceData
+      .map((lap) => lap[driver])
+      .filter(
+        (time) => typeof time === "number" && Number.isFinite(time)
+      );
+
+    const meanLapTime = times.length
+      ? times.reduce((sum, time) => sum + time, 0) / times.length
+      : null;
+
+    return (
+      <div className="driver-row" key={`${index}-${driver}`}>
+        <span className={`driver-stripe ${index === 0 ? "ham" : "ver"}`} />
+        <div>
+          <b>{driver}</b>
+          <small>{index === 0 ? "Driver A" : "Driver B"}</small>
+        </div>
+        <strong>
+          {meanLapTime !== null ? meanLapTime.toFixed(3) : "—"}
+          <small>s</small>
+        </strong>
+      </div>
+    );
+  })}
+
+  <div className="small-note">
+    Mean recorded lap duration · seconds
+  </div>
+</Panel>
+
+
+
           <Panel title="LAP TIME TREND">
             {paceLoading ? (
               <p>Loading real race lap times...</p>
@@ -201,39 +470,47 @@ useEffect(() => {
                           border: "1px solid #373d47",
                         }}
                       />
+
                       <Line
-                        dataKey="HAM"
-                        name="HAM"
+                        dataKey={selectedDriverA}
+                        name={selectedDriverA}
                         stroke="#ff4b52"
                         dot={false}
                         strokeWidth={2}
                         connectNulls={false}
                       />
                       <Line
-                        dataKey="VER"
-                        name="VER"
+                        dataKey={selectedDriverB}
+                        name={selectedDriverB}
                         stroke="#dce2e9"
                         dot={false}
                         strokeWidth={2}
                         connectNulls={false}
                       />
+
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
 
-                <div className="legend">
-                  <span className="red-dot" /> HAM
-                  <span className="white-dot" /> VER
-                </div>
+
+                  <div className="legend">
+                    <span className="red-dot" /> {selectedDriverA}
+                    <span className="white-dot" /> {selectedDriverB}
+                  </div>
+
               </>
             )}
           </Panel>
 
 
           <Panel title="DATA INTEGRITY">
-            <div className="integrity-stat"><Activity size={17} /><span>Valid lap records</span><b>914</b></div>
-            <div className="integrity-stat"><Timer size={17} /><span>Drivers compared</span><b>2</b></div>
-            <p className="small-note">Source: OpenF1 Â· 2024 British GP race session</p>
+            <div className="integrity-stat"> <Activity size={17} /> <span>Valid lap records</span> <b>{paceData.length}</b></div>
+            <div className="integrity-stat"> <Timer size={17} /> <span>Drivers selected</span> <b>{new Set([selectedDriverA, selectedDriverB]).size}</b></div>
+
+<p className="small-note">
+  Source: {selectedSeason} {selectedRace} race session
+</p>
+
           </Panel>
         </aside>
 
@@ -277,19 +554,61 @@ useEffect(() => {
             <p className="small-note">Illustrative curves only. Real tyre degradation requires stint and tyre data.</p>
           </Panel>
 
-          <Panel title="DRIVER COMPARISON">
-            <form className="compare-form" onSubmit={compareDrivers}>
-              <label>DRIVER A<select value={driverA} onChange={(e) => setDriverA(e.target.value)}><option value="HAM">HAM Â· Hamilton</option><option value="VER">VER Â· Verstappen</option></select></label>
-              <label>DRIVER B<select value={driverB} onChange={(e) => setDriverB(e.target.value)}><option value="VER">VER Â· Verstappen</option><option value="HAM">HAM Â· Hamilton</option></select></label>
-              <button type="submit"><RefreshCw size={13} /> Compare drivers</button>
-            </form>
-            {comparison?.error ? <p className="error-text">{comparison.error}</p> : comparison && (
-              <div className="comparison-result">
-                <div><span>Mean gap (A âˆ’ B)</span><b>{gapText}</b></div>
-                <small>{driverA === driverB ? "Choose two different drivers for a meaningful comparison." : gap < 0 ? `${driverA} has the lower mean recorded lap time.` : gap > 0 ? `${driverB} has the lower mean recorded lap time.` : "Both means are equal."}</small>
-              </div>
-            )}
-          </Panel>
+
+<Panel title="DRIVER COMPARISON">
+  <div className="compare-form">
+    <div className="comparison-result">
+      <div>
+        <span>Driver A · {selectedDriverA}</span>
+        <b>
+          {comparison?.[selectedDriverA]?.mean_lap_seconds != null
+            ? `${comparison[selectedDriverA].mean_lap_seconds.toFixed(3)} s`
+            : "—"}
+        </b>
+      </div>
+
+      <div>
+        <span>Driver B · {selectedDriverB}</span>
+        <b>
+          {comparison?.[selectedDriverB]?.mean_lap_seconds != null
+            ? `${comparison[selectedDriverB].mean_lap_seconds.toFixed(3)} s`
+            : "—"}
+        </b>
+      </div>
+
+      <div>
+        <span>Mean gap (A − B)</span>
+        <b>{gapText}</b>
+      </div>
+
+      {comparison?.error && (
+        <p className="error-text">{comparison.error}</p>
+      )}
+
+      {!comparison?.error && comparison && (
+        <small>
+          {selectedDriverA === selectedDriverB
+            ? "Choose two different drivers."
+            : gap < 0
+              ? `${selectedDriverA} has the lower mean lap time.`
+              : gap > 0
+                ? `${selectedDriverB} has the lower mean lap time.`
+                : "Both mean lap times are equal."}
+        </small>
+      )}
+    </div>
+
+    <button
+      type="button"
+      onClick={() => compareDrivers()}
+      disabled={loading || selectedDriverA === selectedDriverB}
+    >
+      <RefreshCw size={13} />
+      {loading ? "Comparing..." : "Compare selected drivers"}
+    </button>
+  </div>
+</Panel>
+
 
           <Panel title="ANALYSIS NOTES">
             <div className="note-line"><Zap size={15} /><span>Lower mean lap time means a lower recorded average.</span></div>

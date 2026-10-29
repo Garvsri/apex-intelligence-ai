@@ -1,6 +1,6 @@
 
 from typing import Literal
-
+from apex.data_loader import list_datasets, load_dataset
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from apex.analytics import (
@@ -129,3 +129,63 @@ def race_lap_times(
             status_code=500,
             detail="Lap-time analysis failed. Check the server terminal.",
         ) from exc
+@app.get("/races")
+def available_races():
+    datasets = [
+        {
+            "season": entry["season"],
+            "grand_prix": entry["grand_prix"],
+            "dataset_id": entry["dataset_id"],
+        }
+        for entry in list_datasets()
+        if entry.get("session_type") == "R"
+        and entry.get("status") == "imported"
+    ]
+
+    # Avoid duplicate race choices if the manifest has duplicate entries.
+    unique_races = {
+        (item["season"], item["grand_prix"]): item
+        for item in datasets
+    }
+
+    return {
+        "seasons": sorted({item["season"] for item in unique_races.values()}),
+        "races": sorted(
+            unique_races.values(),
+            key=lambda item: (item["season"], item["grand_prix"]),
+        ),
+    }
+
+@app.get("/race/{season}/{grand_prix}/drivers")
+def available_race_drivers(season: int, grand_prix: str):
+    matches = [
+        entry
+        for entry in list_datasets()
+        if entry.get("season") == season
+        and entry.get("grand_prix") == grand_prix
+        and entry.get("session_type") == "R"
+        and entry.get("status") == "imported"
+    ]
+
+    if not matches:
+        raise HTTPException(
+            status_code=404,
+            detail="Race dataset not found."
+        )
+
+    _, laps = load_dataset(matches[0]["dataset_id"])
+
+    drivers = sorted(
+        laps["Driver"]
+        .dropna()
+        .astype(str)
+        .str.upper()
+        .unique()
+        .tolist()
+    )
+
+    return {
+        "season": season,
+        "grand_prix": grand_prix,
+        "drivers": drivers,
+    }

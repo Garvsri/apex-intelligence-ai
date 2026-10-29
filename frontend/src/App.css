@@ -222,3 +222,111 @@ button { cursor: pointer; }
     font-size: 10px;
   }
 }
+
+.race-selector-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 14px;
+  padding: 16px 24px;
+  background: #10141a;
+  border-bottom: 1px solid #282d35;
+}
+
+.race-selector-strip label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #8e98a7;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.race-selector-strip select {
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  color: #e5eaf0;
+  background: #181d25;
+  border: 1px solid #373d47;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 12px;
+}
+
+.race-selector-strip select:focus {
+  outline: 1px solid #ff4b52;
+  border-color: #ff4b52;
+}
+
+@media (max-width: 900px) {
+  .race-selector-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 14px;
+  }
+}
+
+/* Compact Driver Comparison panel */
+.comparison-result {
+  padding: 14px;
+  font-size: 12px;
+}
+
+.comparison-result > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #282d35;
+}
+
+.comparison-result > div span {
+  color: #8e98a7;
+  line-height: 1.5;
+}
+
+.comparison-result > div b {
+  color: #e5eaf0;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.comparison-result > p {
+  margin: 0 0 12px;
+  color: #9aa6b7;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.comparison-result > small {
+  display: block;
+  margin: 12px 0;
+  color: #9aa6b7;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.comparison-result button {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+}
+
+.compare-form > button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.compare-form > button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
