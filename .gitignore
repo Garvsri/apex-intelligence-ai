@@ -16,3 +16,5 @@ data/
 .chroma/
 # Local backup files
 *.backup
+tyre_api_validation_report.csv
+tyre_ingestion_2021_2026_report.csv
