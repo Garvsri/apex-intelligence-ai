@@ -198,6 +198,12 @@ def grand_prix_driver_performance(
         and entry["session_type"] == "R"
         and entry["grand_prix"].casefold() == grand_prix.strip().casefold()
     ]
+    matches.sort(
+    key=lambda entry: (
+        "race_tyres" not in entry.get("dataset_id", ""),
+        entry.get("dataset_id", ""),
+    )
+)
 
     if not matches:
         available = sorted({
@@ -446,13 +452,26 @@ def grand_prix_tyre_stints(
 
     required_tyre_columns = {"compound", "stint", "tyre_life"}
 
-    # Prefer a dataset with actual tyre metadata.
+    # Prefer the new race-specific tyre datasets.
+    # Fall back to older datasets only when necessary.
+    preferred_matches = sorted(
+        matches,
+        key=lambda entry: (
+            "race_tyres" not in entry.get("dataset_id", ""),
+            entry.get("dataset_id", ""),
+        ),
+    )
+
     selected = None
     laps = None
 
-    for entry in matches:
+    for entry in preferred_matches:
         _, candidate = load_dataset(entry["dataset_id"])
-        if required_tyre_columns.issubset(candidate.columns):
+
+        has_required_columns = required_tyre_columns.issubset(
+            candidate.columns
+        )
+        if has_required_columns:
             selected = entry
             laps = candidate
             break
@@ -479,6 +498,7 @@ def grand_prix_tyre_stints(
     frame = frame.dropna(
         subset=["Driver", "lap_number", "lap_duration", "stint"]
     )
+
     frame = frame[
         (frame["lap_duration"] > 0)
         & (frame["lap_number"] > 0)
@@ -511,7 +531,6 @@ def grand_prix_tyre_stints(
 
     frame["is_pit_out_lap_normalized"] = pit_out
 
-    
     summaries = []
 
     for driver, driver_laps in frame.groupby("Driver", sort=True):
@@ -527,6 +546,7 @@ def grand_prix_tyre_stints(
             compound_values = (
                 valid_laps["compound"].dropna().unique().tolist()
             )
+
             tyre_life = valid_laps["tyre_life"].dropna()
 
             pit_in = pd.to_numeric(
@@ -579,9 +599,9 @@ def grand_prix_tyre_stints(
                 "pit_out_lap_records": int(
                     valid_laps["is_pit_out_lap_normalized"].sum()
                 ),
-                
             })
-                # Link each stint to the pit transition that entered it.
+
+    # Link each stint to the pit transition that entered it.
     previous_stints = {}
 
     for summary in summaries:
@@ -617,4 +637,3 @@ def grand_prix_tyre_stints(
             "traffic, weather, fuel load, safety cars, and track conditions."
         ),
     }
-

@@ -1,5 +1,6 @@
-
+from fastapi.middleware.cors import CORSMiddleware
 from typing import Literal
+from fastapi import FastAPI
 from apex.data_loader import list_datasets, load_dataset
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
@@ -18,6 +19,18 @@ app = FastAPI(
     title="Apex Intelligence AI",
     description="An F1 analytics and knowledge assistant powered by LangGraph, RAG, and Ollama.",
     version="0.1.0",
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 app.add_middleware(
     CORSMiddleware,
