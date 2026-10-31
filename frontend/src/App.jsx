@@ -23,7 +23,6 @@ function Panel({ title, children, className = "" }) {
     <section className={`panel ${className}`}>
       <div className="panel-title">
         <span>{title}</span>
-        <span className="panel-dots">â€¢â€¢â€¢</span>
       </div>
       {children}
     </section>
@@ -46,6 +45,10 @@ function App() {
   const [selectedDriverA, setSelectedDriverA] = useState("HAM");
   const [selectedDriverB, setSelectedDriverB] = useState("VER");
   const [paceError, setPaceError] = useState("");
+  const [tyreStints, setTyreStints] = useState([]);
+  const [tyreLoading, setTyreLoading] = useState(false);
+  const [tyreError, setTyreError] = useState("");
+  const [selectedTyreDriver, setSelectedTyreDriver] = useState("ALL");
 
   useEffect(() => {
     fetch(`${API}/health`)
@@ -216,6 +219,55 @@ useEffect(() => {
   };
 }, [selectedSeason, selectedRace]);
 
+useEffect(() => {
+  if (!selectedSeason || !selectedRace) return;
+
+  let cancelled = false;
+
+  async function loadTyreStints() {
+    setTyreLoading(true);
+    setTyreError("");
+    setTyreStints([]);
+
+    try {
+      const response = await fetch(
+        `${API}/race/${selectedSeason}/${encodeURIComponent(
+          selectedRace
+        )}/stints`
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          typeof result.detail === "string"
+            ? result.detail
+            : "Could not load tyre stint data."
+        );
+      }
+
+      if (!cancelled) {
+        setTyreStints(result.stints ?? []);
+      }
+    } catch (error) {
+      if (!cancelled) {
+        setTyreError(error.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setTyreLoading(false);
+      }
+    }
+  }
+
+  loadTyreStints();
+
+  return () => {
+    cancelled = true;
+  };
+}, [selectedSeason, selectedRace]);
+
+
 
 async function compareDrivers(e) {
   e?.preventDefault();
@@ -290,6 +342,33 @@ async function compareDrivers(e) {
     setComparison({ error: err.message });
   }
 }
+
+const tyreCompoundColor = (compound) => {
+  const colors = {
+    SOFT: "#ff4b52",
+    MEDIUM: "#f4c542",
+    HARD: "#e5e7eb",
+    INTERMEDIATE: "#39c77a",
+    WET: "#4aa3ff",
+  };
+
+  return colors[String(compound ?? "").toUpperCase()] ?? "#858b98";
+};
+
+const tyreDrivers = [
+  ...new Set(tyreStints.map((stint) => stint.driver)),
+].sort();
+
+const visibleTyreStints = tyreStints.filter(
+  (stint) =>
+    selectedTyreDriver === "ALL" ||
+    stint.driver === selectedTyreDriver
+);
+
+const totalRaceLaps = Math.max(
+  1,
+  ...tyreStints.map((stint) => Number(stint.end_lap) || 1)
+);
 
 const gap = comparison?.mean_gap_seconds;
 
@@ -553,6 +632,158 @@ const gapText = Number.isFinite(gap)
             </div>
             <p className="small-note">Illustrative curves only. Real tyre degradation requires stint and tyre data.</p>
           </Panel>
+          
+<Panel title="TYRE STRATEGY COMPARISON">
+  <div className="tyre-strategy-controls">
+    <label htmlFor="tyre-driver-filter">DRIVER</label>
+    <select
+      id="tyre-driver-filter"
+      value={selectedTyreDriver}
+      onChange={(e) => setSelectedTyreDriver(e.target.value)}
+    >
+      <option value="ALL">All drivers</option>
+      {tyreDrivers.map((driver) => (
+        <option key={driver} value={driver}>
+          {driver}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  <div className="tyre-legend">
+    {[
+      ["SOFT", "#ff4b52"],
+      ["MEDIUM", "#f4c542"],
+      ["HARD", "#e5e7eb"],
+      ["INTERMEDIATE", "#39c77a"],
+      ["WET", "#4aa3ff"],
+    ].map(([compound, color]) => (
+      <span key={compound} className="tyre-legend-item">
+        <i style={{ backgroundColor: color }} />
+        {compound}
+      </span>
+    ))}
+  </div>
+{tyreLoading ? (
+  <p className="small-note">Loading real tyre stint data...</p>
+) : tyreError ? (
+  <p className="error-text">{tyreError}</p>
+) : visibleTyreStints.length === 0 ? (
+  <div className="tyre-empty-state">
+    <div className="tyre-empty-icon">🏁</div>
+
+    <h3>Tyre strategy unavailable</h3>
+
+    <p>
+      Stint-level tyre data isn't available for this race yet.
+      Explore the 2024 British Grand Prix to see the tyre strategy
+      comparison in action.
+    </p>
+
+    <button
+      className="tyre-explore-button"
+      onClick={() => {
+        setSelectedSeason(2024);
+        setSelectedRace("British Grand Prix");
+      }}
+    >
+      Explore supported race →
+    </button>
+  </div>
+) : (
+  <>
+      
+<div className="tyre-timeline">
+  {Object.entries(
+    visibleTyreStints.reduce((groups, stint) => {
+      if (!groups[stint.driver]) {
+        groups[stint.driver] = [];
+      }
+
+      groups[stint.driver].push(stint);
+      return groups;
+    }, {})
+  ).map(([driver, driverStints]) => (
+    <div className="tyre-timeline-row" key={driver}>
+      <div className="tyre-driver-label">
+        <b>{driver}</b>
+      </div>
+
+      <div className="tyre-track">
+        {driverStints.map((stint, index) => {
+          const startLap = Number(stint.start_lap);
+          const endLap = Number(stint.end_lap);
+
+          const left =
+            ((Math.max(1, startLap) - 1) / totalRaceLaps) * 100;
+
+          const width =
+            (Math.max(1, endLap - startLap + 1) /
+              totalRaceLaps) * 100;
+
+          return (
+            <div
+              className="tyre-stint-bar"
+              key={`${driver}-${stint.stint}-${index}`}
+              style={{
+                left: `${left}%`,
+                width: `${Math.max(width, 1.5)}%`,
+                backgroundColor: tyreCompoundColor(stint.compound),
+              }}
+              title={`${driver} · ${stint.compound ?? "Unknown"} · Laps ${stint.start_lap}–${stint.end_lap}`}
+            ><span>
+  {{
+    SOFT: "S",
+    MEDIUM: "M",
+    HARD: "H",
+    INTERMEDIATE: "I",
+    WET: "W",
+  }[String(stint.compound ?? "UNKNOWN").toUpperCase()] ?? "?"}
+</span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="tyre-stint-laps">
+        {driverStints.map((stint, index) => (
+          <span key={`${driver}-laps-${index}`}>
+            S{stint.stint}: L{stint.start_lap}–{stint.end_lap}
+            {index < driverStints.length - 1 ? "  |  " : ""}
+          </span>
+        ))}
+      </div>
+
+      <div className="tyre-stint-stats">
+        <span>
+          {driverStints.reduce(
+            (total, stint) =>
+              total +
+              Math.max(
+                0,
+                Number(stint.end_lap) - Number(stint.start_lap) + 1
+              ),
+            0
+          )}{" "}
+          recorded stint laps
+        </span>
+        <span>{driverStints.length} stints</span>
+      </div>
+    </div>
+  ))}
+</div>
+
+
+      <p className="small-note">
+        Bars represent recorded stint lap ranges. Lap ranges and
+        lap-record counts can differ when data is incomplete.
+        Average lap times are not adjusted for traffic, weather,
+        fuel load, or safety-car periods.
+      </p>
+    </>
+  )}
+</Panel>
+
 
 
 <Panel title="DRIVER COMPARISON">
