@@ -8,7 +8,6 @@ from apex.strategy_simulator import (
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-
 from apex.data_loader import list_datasets, load_dataset
 from apex.analytics import (
     compare_driver_pace,
@@ -32,21 +31,27 @@ app = FastAPI(
     ),
     version="0.1.0",
 )
+allowed_origins = [
+    "https://apex-intelligence-ai-red.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
-# CORS configuration
+# Also include any additional origins configured in Render
+extra_origins = os.getenv("CORS_ORIGINS", "")
+
+for origin in extra_origins.split(","):
+    origin = origin.strip()
+    if origin and origin not in allowed_origins:
+        allowed_origins.append(origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:5174",
-        "http://127.0.0.1:5174",
-    ],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 class AskRequest(BaseModel):
     question: str = Field(min_length=3, max_length=1000)
