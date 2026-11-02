@@ -1,22 +1,16 @@
 import RaceScene from "./components/RaceScene";
 import { useEffect, useState } from "react";
 import {
-  Activity, BrainCircuit, Gauge, Flag, Zap,
+  Activity, BrainCircuit, Flag,
   Timer, ChevronRight, Send, RefreshCw, CircleDot,
 } from "lucide-react";
 import {
   ResponsiveContainer, LineChart, Line, XAxis, YAxis,
-  CartesianGrid, Tooltip, AreaChart, Area,
+  CartesianGrid, Tooltip,
 } from "recharts";
 import "./App.css";
 
 const API = "http://127.0.0.1:8000";
-
-const tyreData = Array.from({ length: 11 }, (_, i) => ({
-  lap: i * 5,
-  soft: Math.min(100, 100 - i * 5.1),
-  medium: Math.min(100, 96 - i * 3.1),
-}));
 
 function Panel({ title, children, className = "" }) {
   return (
@@ -49,6 +43,10 @@ function App() {
   const [tyreLoading, setTyreLoading] = useState(false);
   const [tyreError, setTyreError] = useState("");
   const [selectedTyreDriver, setSelectedTyreDriver] = useState("ALL");
+  const [degradationData, setDegradationData] = useState(null);
+  const [degradationLoading, setDegradationLoading] = useState(false);
+  const [degradationError, setDegradationError] = useState("");
+  const [selectedDegradationDriver, setSelectedDegradationDriver] = useState("ALL");
 
   useEffect(() => {
     fetch(`${API}/health`)
@@ -267,6 +265,54 @@ useEffect(() => {
   };
 }, [selectedSeason, selectedRace]);
 
+useEffect(() => {
+  if (!selectedSeason || !selectedRace) return;
+
+  let cancelled = false;
+
+  async function loadTyreDegradation() {
+    setDegradationLoading(true);
+    setDegradationError("");
+    setDegradationData(null);
+
+    try {
+      const response = await fetch(
+        `${API}/race/${selectedSeason}/${encodeURIComponent(
+          selectedRace
+        )}/tyre-degradation-v2`
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          typeof result.detail === "string"
+            ? result.detail
+            : "Could not load tyre degradation analysis."
+        );
+      }
+
+      if (!cancelled) {
+        setDegradationData(result);
+      }
+    } catch (error) {
+      if (!cancelled) {
+        setDegradationError(error.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setDegradationLoading(false);
+      }
+    }
+  }
+
+  loadTyreDegradation();
+
+  return () => {
+    cancelled = true;
+  };
+}, [selectedSeason, selectedRace]);
+
 
 
 async function compareDrivers(e) {
@@ -369,6 +415,51 @@ const totalRaceLaps = Math.max(
   1,
   ...tyreStints.map((stint) => Number(stint.end_lap) || 1)
 );
+
+const degradationStints = degradationData?.stints ?? [];
+const degradationDrivers = [
+  ...new Set(degradationStints.map((stint) => stint.driver).filter(Boolean)),
+].sort();
+const visibleDegradationStints = degradationStints.filter(
+  (stint) =>
+    selectedDegradationDriver === "ALL" ||
+    stint.driver === selectedDegradationDriver
+);
+
+const degradationChartData = visibleDegradationStints
+  .map((stint) => {
+    const robust = stint.robust_degradation_seconds_per_lap;
+    const linear = stint.raw_degradation_seconds_per_lap;
+
+    const robustValue =
+      robust != null && Number.isFinite(Number(robust))
+        ? Number(robust)
+        : null;
+
+    const linearValue =
+      linear != null && Number.isFinite(Number(linear))
+        ? Number(linear)
+        : null;
+
+    return {
+      label: `${stint.driver} S${stint.stint}`,
+      driver: stint.driver,
+      stint: stint.stint,
+      compound: stint.compound,
+      robust_slope: robustValue,
+      linear_slope: linearValue,
+    };
+  })
+  .filter(
+    (stint) =>
+      stint.robust_slope !== null ||
+      stint.linear_slope !== null
+  );
+
+const formatSlope = (value) =>
+  value != null && Number.isFinite(Number(value))
+    ? `${Number(value) >= 0 ? "+" : ""}${Number(value).toFixed(4)} s/lap`
+    : "—";
 
 const gap = comparison?.mean_gap_seconds;
 
@@ -590,7 +681,117 @@ const gapText = Number.isFinite(gap)
   Source: {selectedSeason} {selectedRace} race session
 </p>
 
-          </Panel>
+</Panel>
+<Panel
+  title={`TYRE DEGRADATION TREND · ${
+    selectedDegradationDriver === "ALL"
+      ? "ALL DRIVERS"
+      : selectedDegradationDriver
+  }`}
+  className="left-degradation-chart-panel"
+>
+  <div className="tyre-strategy-controls">
+    <label htmlFor="left-degradation-driver">
+      DRIVER
+    </label>
+
+    <select
+      id="left-degradation-driver"
+      value={selectedDegradationDriver}
+      onChange={(e) =>
+        setSelectedDegradationDriver(e.target.value)
+      }
+    >
+      <option value="ALL">All drivers</option>
+      {degradationDrivers.map((driver) => (
+        <option key={driver} value={driver}>
+          {driver}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  {degradationLoading ? (
+    <p className="small-note">Loading degradation trends...</p>
+  ) : degradationError ? (
+    <p className="error-text">{degradationError}</p>
+  ) : degradationChartData.length === 0 ? (
+    <p className="small-note">
+      No valid regression slopes are available for this selection.
+    </p>
+  ) : (
+    <>
+      <div className="chart-box small-chart">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={degradationChartData}
+            margin={{ top: 8, right: 8, left: -18, bottom: 4 }}
+          >
+            <CartesianGrid
+              stroke="#282d35"
+              strokeDasharray="3 3"
+            />
+
+            <XAxis dataKey="label" hide />
+
+            <YAxis
+              stroke="#7e8794"
+              tick={{ fontSize: 8 }}
+              tickFormatter={(value) =>
+                `${Number(value).toFixed(2)}s`
+              }
+              width={38}
+            />
+
+            <Tooltip
+              contentStyle={{
+                background: "#11151b",
+                border: "1px solid #373d47",
+                fontSize: "11px",
+              }}
+              formatter={(value, name) => [
+                `${Number(value).toFixed(4)} s/lap`,
+                name === "robust_slope"
+                  ? "Robust Theil-Sen"
+                  : "Linear regression",
+              ]}
+              labelFormatter={(label) =>
+                `Driver / stint: ${label}`
+              }
+            />
+
+            <Line
+              type="monotone"
+              dataKey="robust_slope"
+              name="Robust Theil-Sen"
+              stroke="#f4c542"
+              strokeWidth={2}
+              dot={{ r: 3, fill: "#f4c542" }}
+            />
+
+            <Line
+              type="monotone"
+              dataKey="linear_slope"
+              name="Linear regression"
+              stroke="#ff4b52"
+              strokeWidth={1.5}
+              dot={{ r: 2, fill: "#ff4b52" }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      <p className="small-note">
+        {selectedDegradationDriver === "ALL"
+          ? "Showing all drivers."
+          : `Showing ${selectedDegradationDriver} only.`}
+        {" "}Yellow: robust regression. Red: linear regression.
+        Values represent observed lap-time changes per tyre-age lap.
+      </p>
+    </>
+  )}
+</Panel>
+
         </aside>
 
         <section className="center-column">
@@ -614,25 +815,8 @@ const gapText = Number.isFinite(gap)
             {answer && <div className="answer-box"><div className="answer-label"><BrainCircuit size={13} /> APEX ANALYSIS</div><p>{answer}</p></div>}
           </Panel>
         </section>
-
         <aside className="right-column" id="analytics">
-          <Panel title="TYRE DEGRADATION MODEL">
-            <div className="model-label">ILLUSTRATIVE TREND Â· NOT A FITTED MODEL</div>
-            <div className="chart-box tyre-chart">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={tyreData}>
-                  <CartesianGrid stroke="#282d35" strokeDasharray="3 3" />
-                  <XAxis dataKey="lap" stroke="#7e8794" tick={{ fontSize: 9 }} />
-                  <YAxis stroke="#7e8794" tick={{ fontSize: 9 }} />
-                  <Tooltip contentStyle={{ background: "#11151b", border: "1px solid #373d47" }} />
-                  <Area type="monotone" dataKey="soft" name="Soft index" stroke="#ff4b52" fill="#ff4b52" fillOpacity={0.12} />
-                  <Area type="monotone" dataKey="medium" name="Medium index" stroke="#dce2e9" fill="#dce2e9" fillOpacity={0.06} />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-            <p className="small-note">Illustrative curves only. Real tyre degradation requires stint and tyre data.</p>
-          </Panel>
-          
+
 <Panel title="TYRE STRATEGY COMPARISON">
   <div className="tyre-strategy-controls">
     <label htmlFor="tyre-driver-filter">DRIVER</label>
@@ -839,15 +1023,198 @@ const gapText = Number.isFinite(gap)
     </button>
   </div>
 </Panel>
-
-
-          <Panel title="ANALYSIS NOTES">
-            <div className="note-line"><Zap size={15} /><span>Lower mean lap time means a lower recorded average.</span></div>
-            <div className="note-line"><Activity size={15} /><span>Traffic, tyres, pit stops, and safety cars affect comparisons.</span></div>
-            <div className="note-line"><Gauge size={15} /><span>Historical session data; not a live race feed.</span></div>
-          </Panel>
         </aside>
+
+        <section
+          className="degradation-grid-item"
+          style={{ gridColumn: "1 / -1", minWidth: 0, width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
+        >
+          <Panel title="TYRE DEGRADATION ANALYSIS · MODEL V2.1" className="degradation-wide-panel">
+  {degradationLoading ? (
+    <p className="small-note">Running robust tyre degradation analysis...</p>
+  ) : degradationError ? (
+    <p className="error-text">{degradationError}</p>
+  ) : !degradationData || degradationStints.length === 0 ? (
+    <p className="small-note">
+      No tyre degradation results are available for this race.
+    </p>
+  ) : (
+    <>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+        gap: "10px",
+        marginBottom: "14px"
+      }}>
+        <div style={{ background: "#111820", border: "1px solid #29313b", borderRadius: "8px", padding: "12px" }}>
+          <small style={{ color: "#8e9aa8", display: "block" }}>VALID LAP RECORDS</small>
+          <strong style={{ fontSize: "22px" }}>{degradationData.total_valid_laps ?? "—"}</strong>
+        </div>
+        <div style={{ background: "#111820", border: "1px solid #29313b", borderRadius: "8px", padding: "12px" }}>
+          <small style={{ color: "#8e9aa8", display: "block" }}>ANALYZED STINTS</small>
+          <strong style={{ fontSize: "22px" }}>{degradationData.total_stints ?? degradationStints.length}</strong>
+        </div>
+      </div>
+
+      <div className="tyre-strategy-controls">
+        <label htmlFor="degradation-driver-filter">DRIVER</label>
+        <select
+          id="degradation-driver-filter"
+          value={selectedDegradationDriver}
+          onChange={(e) => setSelectedDegradationDriver(e.target.value)}
+        >
+          <option value="ALL">All drivers</option>
+          {degradationDrivers.map((driver) => (
+            <option key={driver} value={driver}>{driver}</option>
+          ))}
+        </select>
+      </div>
+
+      <div style={{ marginTop: "12px" }}>
+        <div className="model-label">ROBUST THEIL–SEN SLOPE · SECONDS PER TYRE-AGE LAP</div>
+        {degradationChartData.length > 0 ? (
+          <div className="chart-box tyre-chart">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={degradationChartData} margin={{ top: 8, right: 12, left: 2, bottom: 8 }}>
+                <CartesianGrid stroke="#282d35" strokeDasharray="3 3" />
+                <XAxis dataKey="label" stroke="#7e8794" tick={{ fontSize: 9 }} />
+                <YAxis
+                  stroke="#7e8794"
+                  tick={{ fontSize: 9 }}
+                  tickFormatter={(value) => `${Number(value).toFixed(2)}s`}
+                />
+                <Tooltip
+                  contentStyle={{ background: "#11151b", border: "1px solid #373d47" }}
+                  formatter={(value, name) => [`${Number(value).toFixed(4)} s/lap`, name === "robust_slope" ? "Robust slope" : "Linear slope"]}
+                  labelFormatter={(label) => `Driver / stint: ${label}`}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="robust_slope"
+                  name="Robust Theil-Sen"
+                  stroke="#f4c542"
+                  strokeWidth={2}
+                  dot={{ r: 3 }}
+                  connectNulls={false}
+                />
+
+                <Line
+                  type="monotone"
+                  dataKey="linear_slope"
+                  name="Ordinary Linear Regression"
+                  stroke="#ff4b52"
+                  strokeWidth={2}
+                  dot={{ r: 2 }}
+                  connectNulls={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        ) : (
+          <p className="small-note">No stints have enough tyre-age data to plot a robust slope.</p>
+        )}
+      </div>
+
+      <div className="degradation-stint-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "9px", marginTop: "14px" }}>
+        {visibleDegradationStints.map((stint, index) => {
+          const reliability = String(stint.reliability ?? "unknown").toLowerCase();
+          const badgeColor = reliability === "high" ? "#39c77a" : reliability === "medium" ? "#f4c542" : "#ff777d";
+          const outlierLaps = Array.isArray(stint.outlier_laps) ? stint.outlier_laps : [];
+          const sectors = Array.isArray(stint.sector_analysis)
+            ? stint.sector_analysis.map((sector, sectorIndex) => [
+                sector.sector ?? sector.name ?? `Sector ${sectorIndex + 1}`,
+                sector,
+              ])
+            : stint.sector_analysis && typeof stint.sector_analysis === "object"
+              ? Object.entries(stint.sector_analysis)
+              : [];
+
+          return (
+            <details
+              key={`${stint.driver}-${stint.stint}-${index}`}
+              style={{ background: "#111820", border: "1px solid #29313b", borderRadius: "8px", padding: "10px 12px" }}
+            >
+              <summary style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                <span>
+                  <strong>{stint.driver}</strong>
+                  <small style={{ color: "#9aa5b1", marginLeft: "8px" }}>
+                    STINT {stint.stint} · {stint.compound ?? "UNKNOWN"}
+                  </small>
+                </span>
+                <span style={{ color: badgeColor, fontSize: "10px", fontWeight: 700, textTransform: "uppercase" }}>
+                  {reliability} reliability
+                </span>
+              </summary>
+
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "9px", marginTop: "12px" }}>
+                <div>
+                  <small style={{ color: "#8e9aa8", display: "block" }}>ROBUST SLOPE</small>
+                  <b>{formatSlope(stint.robust_degradation_seconds_per_lap)}</b>
+                </div>
+                <div>
+                  <small style={{ color: "#8e9aa8", display: "block" }}>LINEAR R²</small>
+                  <b>{stint.r_squared != null && Number.isFinite(Number(stint.r_squared)) ? Number(stint.r_squared).toFixed(3) : "—"}</b>
+                </div>
+                <div>
+                  <small style={{ color: "#8e9aa8", display: "block" }}>VALID LAPS / TYRE AGES</small>
+                  <b>{stint.valid_laps ?? "—"} /{" "}{stint.tyre_age_start != null && stint.tyre_age_end != null? `${stint.tyre_age_start}–${stint.tyre_age_end}`: "—"}</b>
+                </div>
+                <div>
+                  <small style={{ color: "#8e9aa8", display: "block" }}>FIT / DATA</small>
+                  <b>{stint.statistical_fit_quality ?? "—"} / {stint.data_sufficiency ?? "—"}</b>
+                </div>
+                <div>
+                  <small style={{ color: "#8e9aa8", display: "block" }}>LAP-TIME TREND</small>
+                  <b>{String(stint.lap_time_trend ?? "—").replaceAll("_", " ")}</b>
+                </div>
+                <div>
+                  <small style={{ color: "#8e9aa8", display: "block" }}>OUTLIER LAPS</small>
+                  <b>{outlierLaps.length ? outlierLaps.join(", ") : "None flagged"}</b>
+                </div>
+              </div>
+
+              {sectors.length > 0 && (
+                <div style={{ marginTop: "12px" }}>
+                  <small style={{ color: "#8e9aa8", display: "block", marginBottom: "6px" }}>SECTOR ANALYSIS</small>
+                  {sectors.map(([sector, details]) => (
+                    <div key={sector} style={{ display: "flex", justifyContent: "space-between", gap: "10px", padding: "4px 0", borderTop: "1px solid #29313b", fontSize: "12px" }}>
+                      <span>{String(sector).replaceAll("_", " ").toUpperCase()}</span>
+                      <span style={{ color: "#dce2e9" }}>
+                        {details && typeof details === "object"
+                          ? Object.entries(details).map(([key, value]) =>
+                              `${key.replaceAll("_", " ")}: ${typeof value === "number" ? value.toFixed(4) : String(value)}`
+                            ).join(" · ")
+                          : String(details)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {Array.isArray(stint.context_warnings) && stint.context_warnings.length > 0 && (
+                <ul style={{ color: "#9aa5b1", fontSize: "11px", paddingLeft: "17px", marginBottom: 0 }}>
+                  {stint.context_warnings.map((warning, warningIndex) => (
+                    <li key={warningIndex}>{warning}</li>
+                  ))}
+                </ul>
+              )}
+            </details>
+          );
+        })}
+      </div>
+
+      <p className="small-note" style={{ marginTop: "12px" }}>
+        {degradationData.metric_note ?? "Robust slopes describe observed lap-time trends against tyre age, not pure causal tyre wear."}
+        {" "}Statistical reliability describes the regression evidence; tyre-wear interpretation remains uncertain because race conditions can affect lap times.
+      </p>
+    </>
+  )}
+</Panel>
+        </section>
+
       </main>
+
+
 
       <footer className="footer"><span>APEX INTELLIGENCE AI Â· F1 ANALYTICS</span><span>LANGGRAPH Â· RAG Â· OLLAMA Â· FASTAPI</span></footer>
     </div>

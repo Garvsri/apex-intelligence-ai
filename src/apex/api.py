@@ -1,5 +1,9 @@
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Literal
+from apex.analytics import (
+    grand_prix_tyre_degradation,
+    grand_prix_tyre_degradation_v2,
+)
 from fastapi import FastAPI
 from apex.data_loader import list_datasets, load_dataset
 from fastapi import FastAPI, HTTPException
@@ -9,6 +13,8 @@ from apex.analytics import (
     grand_prix_driver_performance,
     grand_prix_lap_times,
     grand_prix_tyre_stints,
+    grand_prix_tyre_degradation,
+    grand_prix_tyre_degradation_v2,
     season_driver_leaderboard,
 )
 from apex.agent import ask_apex
@@ -217,4 +223,46 @@ def race_tyre_stints(season: int, grand_prix: str):
         raise HTTPException(
             status_code=500,
             detail="Tyre stint analysis failed. Check the server terminal.",
+        ) from exc
+@app.get("/race/{season}/{grand_prix}/tyre-degradation")
+def race_tyre_degradation(season: int, grand_prix: str):
+    try:
+        return grand_prix_tyre_degradation(season, grand_prix)
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail="Tyre degradation analysis failed. Check the server terminal.",
+        ) from exc
+@app.get("/race/{season}/{grand_prix}/tyre-degradation")
+def race_tyre_degradation(season: int, grand_prix: str):
+    try:
+        return grand_prix_tyre_degradation(season, grand_prix)
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail="Tyre degradation analysis failed. Check the server terminal.",
+        ) from exc
+@app.get("/race/{season}/{grand_prix}/tyre-degradation-v2")
+def race_tyre_degradation_v2(season: int, grand_prix: str):
+    try:
+        return grand_prix_tyre_degradation_v2(season, grand_prix)
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail="Tyre degradation v2 analysis failed. Check the server terminal.",
         ) from exc

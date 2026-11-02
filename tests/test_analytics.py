@@ -4,6 +4,7 @@ import pytest
 from apex.analytics import (
     compare_driver_pace,
     grand_prix_tyre_stints,
+    grand_prix_tyre_degradation,
 )
 from apex import data_loader
 
@@ -195,3 +196,138 @@ def test_tyre_stints_raise_when_metadata_is_missing(monkeypatch):
 
     with pytest.raises(ValueError, match="No tyre metadata"):
         grand_prix_tyre_stints(2024, "British Grand Prix")
+
+def test_tyre_degradation_calculates_linear_slope(monkeypatch):
+    datasets = [{
+        "dataset_id": "f1_2024_british_grand_prix_race_tyres",
+        "season": 2024,
+        "grand_prix": "British Grand Prix",
+        "session_type": "R",
+        "status": "imported",
+    }]
+
+    laps = pd.DataFrame({
+        "Driver": ["HAM"] * 5,
+        "lap_number": [1, 2, 3, 4, 5],
+        "lap_duration": [90.0, 90.1, 90.2, 90.3, 90.4],
+        "compound": ["MEDIUM"] * 5,
+        "stint": [1] * 5,
+        "tyre_life": [1, 2, 3, 4, 5],
+        "is_pit_out_lap": [False] * 5,
+    })
+
+    monkeypatch.setattr(
+        data_loader,
+        "list_datasets",
+        lambda: datasets,
+    )
+    monkeypatch.setattr(
+        data_loader,
+        "load_dataset",
+        lambda dataset_id: (datasets[0], laps.copy()),
+    )
+
+    result = grand_prix_tyre_degradation(
+        2024,
+        "British Grand Prix",
+    )
+
+    assert result["dataset_id"] == datasets[0]["dataset_id"]
+    assert result["total_valid_laps"] == 5
+
+    stint = result["stints"][0]
+
+    assert stint["driver"] == "HAM"
+    assert stint["compound"] == "MEDIUM"
+    assert stint["degradation_seconds_per_lap"] == pytest.approx(
+        0.1,
+        abs=0.0001,
+    )
+    assert stint["regression_status"] == "calculated"
+    assert stint["r_squared"] == pytest.approx(1.0)
+
+    compound = result["compound_comparison"][0]
+
+    assert compound["compound"] == "MEDIUM"
+    assert compound["stints_with_degradation"] == 1
+
+
+def test_tyre_degradation_requires_three_unique_tyre_ages(monkeypatch):
+    datasets = [{
+        "dataset_id": "test_tyre_race",
+        "season": 2024,
+        "grand_prix": "British Grand Prix",
+        "session_type": "R",
+        "status": "imported",
+    }]
+
+    laps = pd.DataFrame({
+        "Driver": ["HAM"] * 2,
+        "lap_number": [1, 2],
+        "lap_duration": [90.0, 91.0],
+        "compound": ["MEDIUM"] * 2,
+        "stint": [1] * 2,
+        "tyre_life": [1, 2],
+        "is_pit_out_lap": [False] * 2,
+    })
+
+    monkeypatch.setattr(
+        data_loader,
+        "list_datasets",
+        lambda: datasets,
+    )
+    monkeypatch.setattr(
+        data_loader,
+        "load_dataset",
+        lambda dataset_id: (datasets[0], laps.copy()),
+    )
+
+    result = grand_prix_tyre_degradation(
+        2024,
+        "British Grand Prix",
+    )
+
+    stint = result["stints"][0]
+
+    assert stint["degradation_seconds_per_lap"] is None
+    assert stint["r_squared"] is None
+    assert stint["regression_status"] == "insufficient_data"
+
+
+def test_tyre_degradation_excludes_pit_out_laps(monkeypatch):
+    datasets = [{
+        "dataset_id": "test_tyre_race",
+        "season": 2024,
+        "grand_prix": "British Grand Prix",
+        "session_type": "R",
+        "status": "imported",
+    }]
+
+    laps = pd.DataFrame({
+        "Driver": ["HAM"] * 5,
+        "lap_number": [1, 2, 3, 4, 5],
+        "lap_duration": [90.0, 90.1, 110.0, 90.3, 90.4],
+        "compound": ["MEDIUM"] * 5,
+        "stint": [1] * 5,
+        "tyre_life": [1, 2, 3, 4, 5],
+        "is_pit_out_lap": [False, False, True, False, False],
+    })
+
+    monkeypatch.setattr(
+        data_loader,
+        "list_datasets",
+        lambda: datasets,
+    )
+    monkeypatch.setattr(
+        data_loader,
+        "load_dataset",
+        lambda dataset_id: (datasets[0], laps.copy()),
+    )
+
+    result = grand_prix_tyre_degradation(
+        2024,
+        "British Grand Prix",
+    )
+
+    assert result["total_valid_laps"] == 4
+    assert result["stints"][0]["valid_laps"] == 4

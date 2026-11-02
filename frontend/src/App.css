@@ -601,3 +601,205 @@ button { cursor: pointer; }
     gap: 7px;
   }
 }
+
+
+
+/* =========================================================
+   APEX RESPONSIVE WIDTH FIX
+   Keeps the existing dashboard design, but removes the
+   default Vite #root width/padding constraints and prevents
+   the page from creating horizontal scrolling.
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+#root {
+  max-width: none;
+  padding: 0;
+  text-align: left;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  min-width: 320px;
+}
+
+.dashboard {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+  padding-inline: clamp(10px, 1.2vw, 18px);
+}
+
+/* Explicitly size the top-level layout to its parent. */
+.top-nav,
+.race-selector-strip,
+.session-strip,
+.command-grid,
+.footer {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Three columns shrink proportionally instead of forcing
+   the center/right columns beyond the viewport. */
+.command-grid {
+  grid-template-columns:
+    minmax(0, 0.78fr)
+    minmax(0, 2.15fr)
+    minmax(0, 0.95fr);
+  gap: clamp(8px, 1vw, 16px);
+}
+
+.left-column,
+.center-column,
+.right-column,
+.degradation-grid-item,
+.panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.race-scene-holo,
+.race-scene-holo canvas {
+  width: 100%;
+  max-width: 100%;
+}
+
+.race-scene-holo {
+  min-width: 0;
+}
+
+/* Keep selectors from imposing their intrinsic minimum widths. */
+.race-selector-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+  padding-inline: clamp(10px, 1.6vw, 24px);
+}
+
+.race-selector-strip label,
+.race-selector-strip select,
+.tyre-strategy-controls,
+.tyre-strategy-controls select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.logo-type {
+  min-width: 0;
+}
+
+/* Avoid long labels or responses expanding grid tracks. */
+.panel,
+.panel-title,
+.small-note,
+.answer-box,
+.comparison-result,
+.tyre-timeline,
+.tyre-timeline-row {
+  overflow-wrap: anywhere;
+}
+
+/* Medium screens: use two columns and place the right-hand
+   panels below, instead of squeezing all three columns. */
+@media (max-width: 1050px) {
+  .command-grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.65fr);
+  }
+
+  .right-column {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .race-selector-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phones and narrow windows: one column, no horizontal scroll. */
+@media (max-width: 700px) {
+  .dashboard {
+    padding-inline: 10px;
+  }
+
+  .command-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .left-column,
+  .center-column,
+  .right-column {
+    grid-column: auto;
+    width: 100%;
+  }
+
+  .right-column {
+    display: flex;
+  }
+
+  .race-selector-strip {
+    grid-template-columns: minmax(0, 1fr);
+    padding-inline: 10px;
+  }
+
+  .top-nav {
+    flex-wrap: wrap;
+    padding-block: 12px;
+  }
+
+  .top-nav nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-around;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .connection {
+    margin-left: auto;
+  }
+
+  .session-strip {
+    gap: 10px 14px;
+  }
+
+  .historical-tag {
+    margin-left: 0;
+  }
+
+  .race-scene-holo {
+    height: 350px;
+  }
+
+  .degradation-grid-item {
+    grid-column: 1 / -1 !important;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+}
+
+/* Ensure the full-width degradation section remains inside
+   the dashboard grid at every viewport size. */
+.degradation-grid-item,
+.degradation-wide-panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
