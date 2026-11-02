@@ -1375,3 +1375,294 @@ def grand_prix_tyre_degradation_v2(
             "not available in this dataset."
         ),
     }
+
+def grand_prix_strategy_overview(
+    season: int,
+    grand_prix: str,
+) -> dict:
+    """
+    Build a historical race strategy overview from imported tyre data.
+
+    Reports:
+    - Driver stint sequences
+    - Pit transition laps
+    - Pit windows
+    - Compound usage
+    - Stint lengths
+    - Observed compound pace
+
+    This is descriptive historical analysis, not a live strategy
+    recommendation or a simulation of alternative strategies.
+    """
+    from apex.data_loader import list_datasets, load_dataset
+
+    if not isinstance(season, int) or isinstance(season, bool):
+        raise ValueError("Season must be an integer.")
+
+    if not isinstance(grand_prix, str) or not grand_prix.strip():
+        raise ValueError("Grand Prix name must be a non-empty string.")
+
+    matches = [
+        entry
+        for entry in list_datasets()
+        if entry.get("season") == season
+        and entry.get("session_type") == "R"
+        and entry.get("status") == "imported"
+        and entry.get("grand_prix", "").casefold()
+        == grand_prix.strip().casefold()
+    ]
+
+    matches.sort(
+        key=lambda entry: (
+            "race_tyres" not in entry.get("dataset_id", ""),
+            entry.get("dataset_id", ""),
+        )
+    )
+
+    required = {
+        "Driver",
+        "lap_number",
+        "lap_duration",
+        "compound",
+        "stint",
+        "tyre_life",
+    }
+
+    selected = None
+    laps = None
+
+    for entry in matches:
+        _, candidate = load_dataset(entry["dataset_id"])
+
+        if required.issubset(candidate.columns):
+            selected = entry
+            laps = candidate
+            break
+
+    if selected is None or laps is None:
+        raise ValueError(
+            f"No imported tyre strategy data found for "
+            f"{grand_prix} in {season}."
+        )
+
+    frame = laps.copy()
+
+    frame["Driver"] = (
+        frame["Driver"].astype("string").str.strip().str.upper()
+    )
+
+    for column in (
+        "lap_number",
+        "lap_duration",
+        "stint",
+        "tyre_life",
+        "pit_in_time_seconds",
+        "pit_out_time_seconds",
+    ):
+        if column in frame.columns:
+            frame[column] = pd.to_numeric(
+                frame[column], errors="coerce"
+            )
+
+    frame["lap_number"] = pd.to_numeric(
+        frame["lap_number"], errors="coerce"
+    )
+    frame["lap_duration"] = pd.to_numeric(
+        frame["lap_duration"], errors="coerce"
+    )
+    frame["stint"] = pd.to_numeric(
+        frame["stint"], errors="coerce"
+    )
+    frame["tyre_life"] = pd.to_numeric(
+        frame["tyre_life"], errors="coerce"
+    )
+
+    frame = frame.dropna(
+        subset=[
+            "Driver",
+            "lap_number",
+            "lap_duration",
+            "stint",
+            "compound",
+        ]
+    )
+
+    frame = frame[
+        (frame["lap_number"] > 0)
+        & (frame["lap_duration"] > 0)
+        & (frame["stint"] > 0)
+    ].copy()
+
+    frame["stint"] = frame["stint"].astype(int)
+    frame["lap_number"] = frame["lap_number"].astype(int)
+    frame["compound"] = (
+        frame["compound"].astype("string").str.strip().str.upper()
+    )
+
+    frame = frame[
+        frame["compound"].notna()
+        & ~frame["compound"].isin(["", "NONE", "NAN", "UNKNOWN"])
+    ]
+
+    if "is_pit_out_lap" in frame.columns:
+        frame["is_pit_out_lap_normalized"] = (
+            frame["is_pit_out_lap"]
+            .astype("string")
+            .str.strip()
+            .str.lower()
+            .isin(["true", "1", "yes"])
+        )
+    else:
+        frame["is_pit_out_lap_normalized"] = False
+
+    if frame.empty:
+        raise ValueError("No valid strategy records were found.")
+
+    driver_strategies = []
+    pit_windows = []
+
+    for driver, driver_frame in frame.groupby("Driver", sort=True):
+        driver_stints = []
+
+        for stint_number, group in driver_frame.groupby(
+            "stint", sort=True
+        ):
+            group = group.sort_values("lap_number")
+
+            compounds = group["compound"].dropna().unique().tolist()
+
+            if len(compounds) != 1:
+                continue
+
+            start_lap = int(group["lap_number"].min())
+            end_lap = int(group["lap_number"].max())
+
+            tyre_ages = group["tyre_life"].dropna()
+
+            pit_in = (
+                pd.to_numeric(
+                    group["pit_in_time_seconds"], errors="coerce"
+                ).dropna()
+                if "pit_in_time_seconds" in group.columns
+                else pd.Series(dtype=float)
+            )
+
+            pit_out = (
+                pd.to_numeric(
+                    group.loc[
+                        group["is_pit_out_lap_normalized"],
+                        "pit_out_time_seconds",
+                    ],
+                    errors="coerce",
+                ).dropna()
+                if "pit_out_time_seconds" in group.columns
+                else pd.Series(dtype=float)
+            )
+
+            stint_info = {
+                "stint": int(stint_number),
+                "compound": str(compounds[0]),
+                "start_lap": start_lap,
+                "end_lap": end_lap,
+                "stint_laps": max(0, end_lap - start_lap + 1),
+                "valid_lap_records": int(len(group)),
+                "mean_lap_seconds": round(
+                    float(group["lap_duration"].mean()), 3
+                ),
+                "tyre_age_start": (
+                    round(float(tyre_ages.min()), 1)
+                    if not tyre_ages.empty else None
+                ),
+                "tyre_age_end": (
+                    round(float(tyre_ages.max()), 1)
+                    if not tyre_ages.empty else None
+                ),
+                "pit_in_session_seconds": (
+                    round(float(pit_in.iloc[-1]), 3)
+                    if not pit_in.empty else None
+                ),
+                "pit_out_session_seconds": (
+                    round(float(pit_out.iloc[0]), 3)
+                    if not pit_out.empty else None
+                ),
+            }
+
+            driver_stints.append(stint_info)
+
+        driver_stints.sort(key=lambda item: item["stint"])
+
+        if not driver_stints:
+            continue
+
+        for index in range(1, len(driver_stints)):
+            previous = driver_stints[index - 1]
+            current = driver_stints[index]
+
+            transition_lap = previous["end_lap"] + 1
+
+            pit_windows.append({
+                "driver": str(driver),
+                "from_stint": previous["stint"],
+                "to_stint": current["stint"],
+                "pit_window_lap": transition_lap,
+                "previous_compound": previous["compound"],
+                "next_compound": current["compound"],
+                "previous_stint_length": previous["stint_laps"],
+                "transition_note": (
+                    "Estimated from consecutive stint lap ranges; "
+                    "not an exact pit-entry lap."
+                ),
+            })
+
+        driver_strategies.append({
+            "driver": str(driver),
+            "total_stints": len(driver_stints),
+            "estimated_pit_stops": max(0, len(driver_stints) - 1),
+            "strategy_type": (
+                f"{len(driver_stints)}-stint strategy"
+            ),
+            "compound_sequence": [
+                stint["compound"] for stint in driver_stints
+            ],
+            "stints": driver_stints,
+        })
+
+    compound_comparison = []
+
+    for compound, group in frame.groupby("compound", sort=True):
+        compound_comparison.append({
+            "compound": str(compound),
+            "drivers": int(group["Driver"].nunique()),
+            "valid_lap_records": int(len(group)),
+            "mean_lap_seconds": round(
+                float(group["lap_duration"].mean()), 3
+            ),
+            "median_lap_seconds": round(
+                float(group["lap_duration"].median()), 3
+            ),
+            "mean_tyre_age": (
+                round(float(group["tyre_life"].mean()), 2)
+                if group["tyre_life"].notna().any()
+                else None
+            ),
+        })
+
+    return {
+        "season": season,
+        "grand_prix": selected["grand_prix"],
+        "dataset_id": selected["dataset_id"],
+        "total_drivers": len(driver_strategies),
+        "total_pit_transitions": len(pit_windows),
+        "drivers": driver_strategies,
+        "pit_windows": pit_windows,
+        "compound_comparison": compound_comparison,
+        "metric_note": (
+            "This is descriptive historical strategy analysis. "
+            "Pit windows are estimated from consecutive stint lap ranges. "
+            "Session-relative pit timestamps are not stationary pit-stop "
+            "durations. Compound mean lap times are not adjusted for "
+            "tyre age, fuel, traffic, weather, or safety-car conditions. "
+            "No undercut, overcut, or alternative-strategy outcome is "
+            "claimed by this analysis."
+        ),
+    }
