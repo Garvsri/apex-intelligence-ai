@@ -120,6 +120,25 @@ apex-intelligence-ai/
 ```
 
 ---
+## 📸 Project Screenshots
+
+### 1. Main Analytics Dashboard
+
+The central dashboard provides driver pace monitoring, lap-time trends, tyre analytics, race intelligence, and the AI Copilot.
+
+![Apex Intelligence AI Dashboard](screenshots/dashboard.png)
+
+### 2. Race Strategy Optimizer
+
+Historical race strategy optimization and live strategy simulation, with configurable pit loss, maximum pit stops, and race distance.
+
+![Race Strategy Optimizer](screenshots/strategy-optimizer.png)
+
+### 3. Custom Strategy Builder
+
+Build custom tyre stint sequences, evaluate estimated race time, and compare your strategy against the optimizer's recommendation.
+
+![Custom Strategy Builder](screenshots/custom-strategy-builder.png)
 
 ## ⚙️ Installation & Setup
 
