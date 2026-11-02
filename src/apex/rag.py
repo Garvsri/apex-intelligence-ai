@@ -1,20 +1,45 @@
 
+import os
 from pathlib import Path
 
+from dotenv import load_dotenv
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
+load_dotenv()
+
 ROOT = Path(__file__).resolve().parents[2]
 KNOWLEDGE_DIR = ROOT / "knowledge"
-VECTOR_DIR = ROOT / ".chroma"
 
-COLLECTION_NAME = "apex_f1_knowledge"
+AI_PROVIDER = os.getenv("AI_PROVIDER", "ollama").lower()
 
-embeddings = OllamaEmbeddings(
-    model="nomic-embed-text"
-)
+if AI_PROVIDER == "gemini":
+    api_key = os.getenv("GEMINI_API_KEY")
+
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY is not configured.")
+
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="gemini-embedding-001",
+        api_key=api_key,
+    )
+
+    VECTOR_DIR = ROOT / ".chroma-gemini"
+    COLLECTION_NAME = "apex_f1_gemini"
+
+elif AI_PROVIDER == "ollama":
+    embeddings = OllamaEmbeddings(
+        model="nomic-embed-text"
+    )
+
+    VECTOR_DIR = ROOT / ".chroma"
+    COLLECTION_NAME = "apex_f1_knowledge"
+
+else:
+    raise ValueError(f"Unsupported AI provider: {AI_PROVIDER}")
 
 
 def build_knowledge_base():
@@ -44,9 +69,6 @@ def build_knowledge_base():
 
     chunks = splitter.split_documents(documents)
 
-    # Open the persistent collection.
-    # Populate it only when it is empty, avoiding duplicate
-    # chunks when the indexing script is run again.
     vectorstore = Chroma(
         collection_name=COLLECTION_NAME,
         embedding_function=embeddings,

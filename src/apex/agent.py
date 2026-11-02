@@ -1,4 +1,7 @@
-
+﻿
+import os
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_ollama import ChatOllama
 from langchain_core.messages import SystemMessage
 from langgraph.graph import StateGraph, START, MessagesState
@@ -12,12 +15,31 @@ from apex.ai_tools import (
 from apex.rag import retrieve_context
 
 
-# Local LLM
-llm = ChatOllama(
-    model="qwen2.5:3b",
-    temperature=0,
-)
+load_dotenv()
 
+# Select LLM based on environment configuration
+AI_PROVIDER = os.getenv("AI_PROVIDER", "ollama").lower()
+
+if AI_PROVIDER == "gemini":
+    api_key = os.getenv("GEMINI_API_KEY")
+
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY is not configured.")
+
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-3.8-flash",
+        temperature=0,
+        api_key=api_key,
+    )
+
+elif AI_PROVIDER == "ollama":
+    llm = ChatOllama(
+        model="qwen2.5:3b",
+        temperature=0,
+    )
+
+else:
+    raise ValueError(f"Unsupported AI provider: {AI_PROVIDER}")
 # Analytics tools
 tools = [
     compare_f1_drivers,
@@ -118,3 +140,5 @@ def ask_apex(question: str):
         config={"recursion_limit": 10},
     )
     return result["messages"][-1].content
+
+

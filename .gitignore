@@ -5,16 +5,28 @@ __pycache__/
 
 # Secrets
 .env
+.env.*
 
-# F1 cached and downloaded data
+# FastF1 cache
 .fastf1-cache/
-data/
+
+# Dataset handling
+data/*
+!data/processed/
+data/processed/*
+!data/processed/*.csv
+!data/processed/manifest.json
 
 # Testing
 .pytest_cache/
 
-.chroma/
+# Chroma vector databases
+.chroma*/
+
 # Local backup files
 *.backup
+*_backup.py
+
+# Generated reports
 tyre_api_validation_report.csv
 tyre_ingestion_2021_2026_report.csv

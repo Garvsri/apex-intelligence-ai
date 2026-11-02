@@ -1,3 +1,4 @@
+import os
 from typing import Optional
 from apex.strategy_simulator import (
     simulate_race_strategy,
@@ -27,7 +28,7 @@ app = FastAPI(
     title="Apex Intelligence AI",
     description=(
         "An F1 analytics and knowledge assistant powered by "
-        "LangGraph, RAG, and Ollama."
+        "LangGraph, RAG, and Gemini."
     ),
     version="0.1.0",
 )

@@ -1,0 +1,4676 @@
+{
+  "datasets": [
+    {
+      "dataset_id": "british_gp_2024_race",
+      "filename": "british_gp_2024_laps.csv",
+      "season": 2024,
+      "grand_prix": "British Grand Prix",
+      "circuit": "Silverstone Circuit",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "Existing project CSV; original upstream source not yet documented",
+      "status": "needs_source_verification",
+      "quality": {
+        "saved_rows": 914,
+        "drivers_count": 19,
+        "valid_lap_records": 914,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_bahrain_grand_prix_r",
+      "filename": "2021_bahrain_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 1,
+      "quality": {
+        "saved_rows": 1018,
+        "drivers_count": 19,
+        "valid_lap_records": 1018,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_emilia_romagna_grand_prix_r",
+      "filename": "2021_emilia_romagna_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 2,
+      "quality": {
+        "saved_rows": 1094,
+        "drivers_count": 19,
+        "valid_lap_records": 1094,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_portuguese_grand_prix_r",
+      "filename": "2021_portuguese_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Portuguese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 3,
+      "quality": {
+        "saved_rows": 1244,
+        "drivers_count": 20,
+        "valid_lap_records": 1244,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_spanish_grand_prix_r",
+      "filename": "2021_spanish_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 4,
+      "quality": {
+        "saved_rows": 1245,
+        "drivers_count": 20,
+        "valid_lap_records": 1245,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_monaco_grand_prix_r",
+      "filename": "2021_monaco_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 5,
+      "quality": {
+        "saved_rows": 1418,
+        "drivers_count": 19,
+        "valid_lap_records": 1418,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_azerbaijan_grand_prix_r",
+      "filename": "2021_azerbaijan_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 6,
+      "quality": {
+        "saved_rows": 832,
+        "drivers_count": 20,
+        "valid_lap_records": 832,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_french_grand_prix_r",
+      "filename": "2021_french_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "French Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 7,
+      "quality": {
+        "saved_rows": 1051,
+        "drivers_count": 20,
+        "valid_lap_records": 1051,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_styrian_grand_prix_r",
+      "filename": "2021_styrian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Styrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 8,
+      "quality": {
+        "saved_rows": 1294,
+        "drivers_count": 20,
+        "valid_lap_records": 1294,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_austrian_grand_prix_r",
+      "filename": "2021_austrian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 9,
+      "quality": {
+        "saved_rows": 1336,
+        "drivers_count": 19,
+        "valid_lap_records": 1336,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_british_grand_prix_r",
+      "filename": "2021_british_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 10,
+      "quality": {
+        "saved_rows": 925,
+        "drivers_count": 19,
+        "valid_lap_records": 925,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_hungarian_grand_prix_r",
+      "filename": "2021_hungarian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 11,
+      "quality": {
+        "saved_rows": 950,
+        "drivers_count": 16,
+        "valid_lap_records": 950,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_belgian_grand_prix_r",
+      "filename": "2021_belgian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 12,
+      "quality": {
+        "saved_rows": 20,
+        "drivers_count": 20,
+        "valid_lap_records": 20,
+        "coverage_status": "limited",
+        "assessment_note": "FastF1 returned 60 source records, of which 20 had valid lap times. The saved CSV contains 20 retained rows."
+      }
+    },
+    {
+      "dataset_id": "2021_dutch_grand_prix_r",
+      "filename": "2021_dutch_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 13,
+      "quality": {
+        "saved_rows": 1361,
+        "drivers_count": 20,
+        "valid_lap_records": 1361,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_italian_grand_prix_r",
+      "filename": "2021_italian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 14,
+      "quality": {
+        "saved_rows": 856,
+        "drivers_count": 19,
+        "valid_lap_records": 856,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_russian_grand_prix_r",
+      "filename": "2021_russian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Russian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 15,
+      "quality": {
+        "saved_rows": 1019,
+        "drivers_count": 20,
+        "valid_lap_records": 1019,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_turkish_grand_prix_r",
+      "filename": "2021_turkish_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Turkish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 16,
+      "quality": {
+        "saved_rows": 1146,
+        "drivers_count": 20,
+        "valid_lap_records": 1146,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_united_states_grand_prix_r",
+      "filename": "2021_united_states_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 17,
+      "quality": {
+        "saved_rows": 1044,
+        "drivers_count": 20,
+        "valid_lap_records": 1044,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_mexico_city_grand_prix_r",
+      "filename": "2021_mexico_city_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 18,
+      "quality": {
+        "saved_rows": 1259,
+        "drivers_count": 18,
+        "valid_lap_records": 1259,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_s\u00e3o_paulo_grand_prix_r",
+      "filename": "2021_s\u00e3o_paulo_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 19,
+      "quality": {
+        "saved_rows": 1360,
+        "drivers_count": 20,
+        "valid_lap_records": 1360,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_qatar_grand_prix_r",
+      "filename": "2021_qatar_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 20,
+      "quality": {
+        "saved_rows": 1111,
+        "drivers_count": 20,
+        "valid_lap_records": 1111,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_saudi_arabian_grand_prix_r",
+      "filename": "2021_saudi_arabian_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 21,
+      "quality": {
+        "saved_rows": 731,
+        "drivers_count": 20,
+        "valid_lap_records": 731,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2021_abu_dhabi_grand_prix_r",
+      "filename": "2021_abu_dhabi_grand_prix_r.csv",
+      "season": 2021,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "round_number": 22,
+      "quality": {
+        "saved_rows": 989,
+        "drivers_count": 19,
+        "valid_lap_records": 989,
+        "coverage_status": "unassessed",
+        "assessment_note": "Source-level completeness has not been verified."
+      }
+    },
+    {
+      "dataset_id": "2022_bahrain_grand_prix_r",
+      "filename": "2022_bahrain_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1125,
+        "source_records_with_lap_time": 1118,
+        "valid_lap_records": 1118,
+        "dropped_records": 7,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 1
+    },
+    {
+      "dataset_id": "2022_saudi_arabian_grand_prix_r",
+      "filename": "2022_saudi_arabian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 820,
+        "source_records_with_lap_time": 772,
+        "valid_lap_records": 772,
+        "dropped_records": 48,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 2
+    },
+    {
+      "dataset_id": "2022_australian_grand_prix_r",
+      "filename": "2022_australian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1045,
+        "source_records_with_lap_time": 1026,
+        "valid_lap_records": 1026,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 3
+    },
+    {
+      "dataset_id": "2022_emilia_romagna_grand_prix_r",
+      "filename": "2022_emilia_romagna_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1132,
+        "source_records_with_lap_time": 1126,
+        "valid_lap_records": 1126,
+        "dropped_records": 6,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 4
+    },
+    {
+      "dataset_id": "2022_miami_grand_prix_r",
+      "filename": "2022_miami_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1057,
+        "source_records_with_lap_time": 1022,
+        "valid_lap_records": 1022,
+        "dropped_records": 35,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 5
+    },
+    {
+      "dataset_id": "2022_spanish_grand_prix_r",
+      "filename": "2022_spanish_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1230,
+        "source_records_with_lap_time": 1230,
+        "valid_lap_records": 1230,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 6
+    },
+    {
+      "dataset_id": "2022_monaco_grand_prix_r",
+      "filename": "2022_monaco_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1179,
+        "source_records_with_lap_time": 1153,
+        "valid_lap_records": 1153,
+        "dropped_records": 26,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 7
+    },
+    {
+      "dataset_id": "2022_azerbaijan_grand_prix_r",
+      "filename": "2022_azerbaijan_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 891,
+        "source_records_with_lap_time": 872,
+        "valid_lap_records": 872,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 8
+    },
+    {
+      "dataset_id": "2022_canadian_grand_prix_r",
+      "filename": "2022_canadian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1264,
+        "source_records_with_lap_time": 1262,
+        "valid_lap_records": 1262,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 9
+    },
+    {
+      "dataset_id": "2022_british_grand_prix_r",
+      "filename": "2022_british_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 815,
+        "source_records_with_lap_time": 773,
+        "valid_lap_records": 773,
+        "dropped_records": 42,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 10
+    },
+    {
+      "dataset_id": "2022_austrian_grand_prix_r",
+      "filename": "2022_austrian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1324,
+        "source_records_with_lap_time": 1323,
+        "valid_lap_records": 1323,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 11
+    },
+    {
+      "dataset_id": "2022_french_grand_prix_r",
+      "filename": "2022_french_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "French Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 958,
+        "source_records_with_lap_time": 945,
+        "valid_lap_records": 945,
+        "dropped_records": 13,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 12
+    },
+    {
+      "dataset_id": "2022_hungarian_grand_prix_r",
+      "filename": "2022_hungarian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1383,
+        "source_records_with_lap_time": 1382,
+        "valid_lap_records": 1382,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 13
+    },
+    {
+      "dataset_id": "2022_belgian_grand_prix_r",
+      "filename": "2022_belgian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 792,
+        "source_records_with_lap_time": 752,
+        "valid_lap_records": 752,
+        "dropped_records": 40,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 14
+    },
+    {
+      "dataset_id": "2022_dutch_grand_prix_r",
+      "filename": "2022_dutch_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1392,
+        "source_records_with_lap_time": 1388,
+        "valid_lap_records": 1388,
+        "dropped_records": 4,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 15
+    },
+    {
+      "dataset_id": "2022_italian_grand_prix_r",
+      "filename": "2022_italian_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 971,
+        "source_records_with_lap_time": 968,
+        "valid_lap_records": 968,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 16
+    },
+    {
+      "dataset_id": "2022_singapore_grand_prix_r",
+      "filename": "2022_singapore_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 945,
+        "source_records_with_lap_time": 837,
+        "valid_lap_records": 837,
+        "dropped_records": 108,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 17
+    },
+    {
+      "dataset_id": "2022_japanese_grand_prix_r",
+      "filename": "2022_japanese_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 507,
+        "source_records_with_lap_time": 432,
+        "valid_lap_records": 432,
+        "dropped_records": 75,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 18
+    },
+    {
+      "dataset_id": "2022_united_states_grand_prix_r",
+      "filename": "2022_united_states_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 992,
+        "source_records_with_lap_time": 918,
+        "valid_lap_records": 918,
+        "dropped_records": 74,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 19
+    },
+    {
+      "dataset_id": "2022_mexico_city_grand_prix_r",
+      "filename": "2022_mexico_city_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1379,
+        "source_records_with_lap_time": 1378,
+        "valid_lap_records": 1378,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 20
+    },
+    {
+      "dataset_id": "2022_s\u00e3o_paulo_grand_prix_r",
+      "filename": "2022_s\u00e3o_paulo_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1259,
+        "source_records_with_lap_time": 1256,
+        "valid_lap_records": 1256,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 21
+    },
+    {
+      "dataset_id": "2022_abu_dhabi_grand_prix_r",
+      "filename": "2022_abu_dhabi_grand_prix_r.csv",
+      "season": 2022,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1117,
+        "source_records_with_lap_time": 1117,
+        "valid_lap_records": 1117,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 22
+    },
+    {
+      "dataset_id": "2023_bahrain_grand_prix_r",
+      "filename": "2023_bahrain_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1056,
+        "source_records_with_lap_time": 1055,
+        "valid_lap_records": 1055,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 1
+    },
+    {
+      "dataset_id": "2023_saudi_arabian_grand_prix_r",
+      "filename": "2023_saudi_arabian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 943,
+        "source_records_with_lap_time": 942,
+        "valid_lap_records": 942,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 2
+    },
+    {
+      "dataset_id": "2023_australian_grand_prix_r",
+      "filename": "2023_australian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1003,
+        "source_records_with_lap_time": 928,
+        "valid_lap_records": 928,
+        "dropped_records": 75,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 3
+    },
+    {
+      "dataset_id": "2023_azerbaijan_grand_prix_r",
+      "filename": "2023_azerbaijan_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 962,
+        "source_records_with_lap_time": 961,
+        "valid_lap_records": 961,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 4
+    },
+    {
+      "dataset_id": "2023_miami_grand_prix_r",
+      "filename": "2023_miami_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1138,
+        "source_records_with_lap_time": 1138,
+        "valid_lap_records": 1138,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 5
+    },
+    {
+      "dataset_id": "2023_monaco_grand_prix_r",
+      "filename": "2023_monaco_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1515,
+        "source_records_with_lap_time": 1513,
+        "valid_lap_records": 1513,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 6
+    },
+    {
+      "dataset_id": "2023_spanish_grand_prix_r",
+      "filename": "2023_spanish_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1312,
+        "source_records_with_lap_time": 1312,
+        "valid_lap_records": 1312,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 7
+    },
+    {
+      "dataset_id": "2023_canadian_grand_prix_r",
+      "filename": "2023_canadian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1317,
+        "source_records_with_lap_time": 1314,
+        "valid_lap_records": 1314,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 8
+    },
+    {
+      "dataset_id": "2023_austrian_grand_prix_r",
+      "filename": "2023_austrian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1354,
+        "source_records_with_lap_time": 1352,
+        "valid_lap_records": 1352,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 9
+    },
+    {
+      "dataset_id": "2023_british_grand_prix_r",
+      "filename": "2023_british_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 971,
+        "source_records_with_lap_time": 970,
+        "valid_lap_records": 970,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 10
+    },
+    {
+      "dataset_id": "2023_hungarian_grand_prix_r",
+      "filename": "2023_hungarian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1252,
+        "source_records_with_lap_time": 1252,
+        "valid_lap_records": 1252,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 11
+    },
+    {
+      "dataset_id": "2023_belgian_grand_prix_r",
+      "filename": "2023_belgian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 816,
+        "source_records_with_lap_time": 815,
+        "valid_lap_records": 815,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 12
+    },
+    {
+      "dataset_id": "2023_dutch_grand_prix_r",
+      "filename": "2023_dutch_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1343,
+        "source_records_with_lap_time": 1324,
+        "valid_lap_records": 1324,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 13
+    },
+    {
+      "dataset_id": "2023_italian_grand_prix_r",
+      "filename": "2023_italian_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 957,
+        "source_records_with_lap_time": 948,
+        "valid_lap_records": 948,
+        "dropped_records": 9,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 14
+    },
+    {
+      "dataset_id": "2023_singapore_grand_prix_r",
+      "filename": "2023_singapore_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1088,
+        "source_records_with_lap_time": 1083,
+        "valid_lap_records": 1083,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 15
+    },
+    {
+      "dataset_id": "2023_japanese_grand_prix_r",
+      "filename": "2023_japanese_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 880,
+        "source_records_with_lap_time": 878,
+        "valid_lap_records": 878,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 16
+    },
+    {
+      "dataset_id": "2023_qatar_grand_prix_r",
+      "filename": "2023_qatar_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1006,
+        "source_records_with_lap_time": 1005,
+        "valid_lap_records": 1005,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 17
+    },
+    {
+      "dataset_id": "2023_united_states_grand_prix_r",
+      "filename": "2023_united_states_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1014,
+        "source_records_with_lap_time": 1014,
+        "valid_lap_records": 1014,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 18
+    },
+    {
+      "dataset_id": "2023_mexico_city_grand_prix_r",
+      "filename": "2023_mexico_city_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1282,
+        "source_records_with_lap_time": 1260,
+        "valid_lap_records": 1260,
+        "dropped_records": 22,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 19
+    },
+    {
+      "dataset_id": "2023_s\u00e3o_paulo_grand_prix_r",
+      "filename": "2023_s\u00e3o_paulo_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1108,
+        "source_records_with_lap_time": 1089,
+        "valid_lap_records": 1089,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 20
+    },
+    {
+      "dataset_id": "2023_las_vegas_grand_prix_r",
+      "filename": "2023_las_vegas_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Las Vegas Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 946,
+        "source_records_with_lap_time": 943,
+        "valid_lap_records": 943,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 21
+    },
+    {
+      "dataset_id": "2023_abu_dhabi_grand_prix_r",
+      "filename": "2023_abu_dhabi_grand_prix_r.csv",
+      "season": 2023,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1157,
+        "source_records_with_lap_time": 1157,
+        "valid_lap_records": 1157,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 22
+    },
+    {
+      "dataset_id": "2024_bahrain_grand_prix_r",
+      "filename": "2024_bahrain_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1129,
+        "source_records_with_lap_time": 1128,
+        "valid_lap_records": 1128,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 1
+    },
+    {
+      "dataset_id": "2024_saudi_arabian_grand_prix_r",
+      "filename": "2024_saudi_arabian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 901,
+        "source_records_with_lap_time": 899,
+        "valid_lap_records": 899,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 2
+    },
+    {
+      "dataset_id": "2024_australian_grand_prix_r",
+      "filename": "2024_australian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 998,
+        "source_records_with_lap_time": 995,
+        "valid_lap_records": 995,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 3
+    },
+    {
+      "dataset_id": "2024_japanese_grand_prix_r",
+      "filename": "2024_japanese_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 907,
+        "source_records_with_lap_time": 881,
+        "valid_lap_records": 881,
+        "dropped_records": 26,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 4
+    },
+    {
+      "dataset_id": "2024_chinese_grand_prix_r",
+      "filename": "2024_chinese_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Chinese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1032,
+        "source_records_with_lap_time": 1029,
+        "valid_lap_records": 1029,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 5
+    },
+    {
+      "dataset_id": "2024_miami_grand_prix_r",
+      "filename": "2024_miami_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1111,
+        "source_records_with_lap_time": 1110,
+        "valid_lap_records": 1110,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 6
+    },
+    {
+      "dataset_id": "2024_emilia_romagna_grand_prix_r",
+      "filename": "2024_emilia_romagna_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1238,
+        "source_records_with_lap_time": 1238,
+        "valid_lap_records": 1238,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 7
+    },
+    {
+      "dataset_id": "2024_monaco_grand_prix_r",
+      "filename": "2024_monaco_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1237,
+        "source_records_with_lap_time": 1229,
+        "valid_lap_records": 1229,
+        "dropped_records": 8,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 8
+    },
+    {
+      "dataset_id": "2024_canadian_grand_prix_r",
+      "filename": "2024_canadian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1272,
+        "source_records_with_lap_time": 1267,
+        "valid_lap_records": 1267,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 9
+    },
+    {
+      "dataset_id": "2024_spanish_grand_prix_r",
+      "filename": "2024_spanish_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1310,
+        "source_records_with_lap_time": 1310,
+        "valid_lap_records": 1310,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 10
+    },
+    {
+      "dataset_id": "2024_austrian_grand_prix_r",
+      "filename": "2024_austrian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1405,
+        "source_records_with_lap_time": 1405,
+        "valid_lap_records": 1405,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 11
+    },
+    {
+      "dataset_id": "2024_british_grand_prix_r",
+      "filename": "2024_british_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 960,
+        "source_records_with_lap_time": 960,
+        "valid_lap_records": 960,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 12
+    },
+    {
+      "dataset_id": "2024_hungarian_grand_prix_r",
+      "filename": "2024_hungarian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1355,
+        "source_records_with_lap_time": 1355,
+        "valid_lap_records": 1355,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 13
+    },
+    {
+      "dataset_id": "2024_belgian_grand_prix_r",
+      "filename": "2024_belgian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 841,
+        "source_records_with_lap_time": 840,
+        "valid_lap_records": 840,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 14
+    },
+    {
+      "dataset_id": "2024_dutch_grand_prix_r",
+      "filename": "2024_dutch_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1426,
+        "source_records_with_lap_time": 1426,
+        "valid_lap_records": 1426,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 15
+    },
+    {
+      "dataset_id": "2024_italian_grand_prix_r",
+      "filename": "2024_italian_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1008,
+        "source_records_with_lap_time": 1008,
+        "valid_lap_records": 1008,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 16
+    },
+    {
+      "dataset_id": "2024_azerbaijan_grand_prix_r",
+      "filename": "2024_azerbaijan_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 973,
+        "source_records_with_lap_time": 971,
+        "valid_lap_records": 971,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 17
+    },
+    {
+      "dataset_id": "2024_singapore_grand_prix_r",
+      "filename": "2024_singapore_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1177,
+        "source_records_with_lap_time": 1177,
+        "valid_lap_records": 1177,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 18
+    },
+    {
+      "dataset_id": "2024_united_states_grand_prix_r",
+      "filename": "2024_united_states_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1059,
+        "source_records_with_lap_time": 1058,
+        "valid_lap_records": 1058,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 19
+    },
+    {
+      "dataset_id": "2024_mexico_city_grand_prix_r",
+      "filename": "2024_mexico_city_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1215,
+        "source_records_with_lap_time": 1213,
+        "valid_lap_records": 1213,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 20
+    },
+    {
+      "dataset_id": "2024_s\u00e3o_paulo_grand_prix_r",
+      "filename": "2024_s\u00e3o_paulo_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1134,
+        "source_records_with_lap_time": 1116,
+        "valid_lap_records": 1116,
+        "dropped_records": 18,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 21
+    },
+    {
+      "dataset_id": "2024_las_vegas_grand_prix_r",
+      "filename": "2024_las_vegas_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Las Vegas Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 938,
+        "source_records_with_lap_time": 938,
+        "valid_lap_records": 938,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 22
+    },
+    {
+      "dataset_id": "2024_qatar_grand_prix_r",
+      "filename": "2024_qatar_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 943,
+        "source_records_with_lap_time": 939,
+        "valid_lap_records": 939,
+        "dropped_records": 4,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 23
+    },
+    {
+      "dataset_id": "2024_abu_dhabi_grand_prix_r",
+      "filename": "2024_abu_dhabi_grand_prix_r.csv",
+      "season": 2024,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1035,
+        "source_records_with_lap_time": 1033,
+        "valid_lap_records": 1033,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 24
+    },
+    {
+      "dataset_id": "2025_australian_grand_prix_r",
+      "filename": "2025_australian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 927,
+        "source_records_with_lap_time": 920,
+        "valid_lap_records": 920,
+        "dropped_records": 7,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 1
+    },
+    {
+      "dataset_id": "2025_chinese_grand_prix_r",
+      "filename": "2025_chinese_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Chinese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1065,
+        "source_records_with_lap_time": 1065,
+        "valid_lap_records": 1065,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 2
+    },
+    {
+      "dataset_id": "2025_japanese_grand_prix_r",
+      "filename": "2025_japanese_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1059,
+        "source_records_with_lap_time": 1059,
+        "valid_lap_records": 1059,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 3
+    },
+    {
+      "dataset_id": "2025_bahrain_grand_prix_r",
+      "filename": "2025_bahrain_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1128,
+        "source_records_with_lap_time": 1128,
+        "valid_lap_records": 1128,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 4
+    },
+    {
+      "dataset_id": "2025_saudi_arabian_grand_prix_r",
+      "filename": "2025_saudi_arabian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 898,
+        "source_records_with_lap_time": 897,
+        "valid_lap_records": 897,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 5
+    },
+    {
+      "dataset_id": "2025_miami_grand_prix_r",
+      "filename": "2025_miami_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1005,
+        "source_records_with_lap_time": 1002,
+        "valid_lap_records": 1002,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 6
+    },
+    {
+      "dataset_id": "2025_emilia_romagna_grand_prix_r",
+      "filename": "2025_emilia_romagna_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1207,
+        "source_records_with_lap_time": 1205,
+        "valid_lap_records": 1205,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 7
+    },
+    {
+      "dataset_id": "2025_monaco_grand_prix_r",
+      "filename": "2025_monaco_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1425,
+        "source_records_with_lap_time": 1423,
+        "valid_lap_records": 1423,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 8
+    },
+    {
+      "dataset_id": "2025_spanish_grand_prix_r",
+      "filename": "2025_spanish_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1203,
+        "source_records_with_lap_time": 1202,
+        "valid_lap_records": 1202,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 9
+    },
+    {
+      "dataset_id": "2025_canadian_grand_prix_r",
+      "filename": "2025_canadian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1349,
+        "source_records_with_lap_time": 1346,
+        "valid_lap_records": 1346,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 10
+    },
+    {
+      "dataset_id": "2025_austrian_grand_prix_r",
+      "filename": "2025_austrian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1126,
+        "source_records_with_lap_time": 1124,
+        "valid_lap_records": 1124,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 11
+    },
+    {
+      "dataset_id": "2025_british_grand_prix_r",
+      "filename": "2025_british_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 825,
+        "source_records_with_lap_time": 822,
+        "valid_lap_records": 822,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 12
+    },
+    {
+      "dataset_id": "2025_belgian_grand_prix_r",
+      "filename": "2025_belgian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 879,
+        "source_records_with_lap_time": 879,
+        "valid_lap_records": 879,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 13
+    },
+    {
+      "dataset_id": "2025_hungarian_grand_prix_r",
+      "filename": "2025_hungarian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1368,
+        "source_records_with_lap_time": 1368,
+        "valid_lap_records": 1368,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 14
+    },
+    {
+      "dataset_id": "2025_dutch_grand_prix_r",
+      "filename": "2025_dutch_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1364,
+        "source_records_with_lap_time": 1362,
+        "valid_lap_records": 1362,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 15
+    },
+    {
+      "dataset_id": "2025_italian_grand_prix_r",
+      "filename": "2025_italian_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 974,
+        "source_records_with_lap_time": 974,
+        "valid_lap_records": 974,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 16
+    },
+    {
+      "dataset_id": "2025_azerbaijan_grand_prix_r",
+      "filename": "2025_azerbaijan_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 968,
+        "source_records_with_lap_time": 965,
+        "valid_lap_records": 965,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 17
+    },
+    {
+      "dataset_id": "2025_singapore_grand_prix_r",
+      "filename": "2025_singapore_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1229,
+        "source_records_with_lap_time": 1229,
+        "valid_lap_records": 1229,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 18
+    },
+    {
+      "dataset_id": "2025_united_states_grand_prix_r",
+      "filename": "2025_united_states_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1067,
+        "source_records_with_lap_time": 1066,
+        "valid_lap_records": 1066,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 19
+    },
+    {
+      "dataset_id": "2025_mexico_city_grand_prix_r",
+      "filename": "2025_mexico_city_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1263,
+        "source_records_with_lap_time": 1262,
+        "valid_lap_records": 1262,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 20
+    },
+    {
+      "dataset_id": "2025_s\u00e3o_paulo_grand_prix_r",
+      "filename": "2025_s\u00e3o_paulo_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1251,
+        "source_records_with_lap_time": 1249,
+        "valid_lap_records": 1249,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 21
+    },
+    {
+      "dataset_id": "2025_las_vegas_grand_prix_r",
+      "filename": "2025_las_vegas_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Las Vegas Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 886,
+        "source_records_with_lap_time": 885,
+        "valid_lap_records": 885,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 22
+    },
+    {
+      "dataset_id": "2025_qatar_grand_prix_r",
+      "filename": "2025_qatar_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1067,
+        "source_records_with_lap_time": 1066,
+        "valid_lap_records": 1066,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 23
+    },
+    {
+      "dataset_id": "2025_abu_dhabi_grand_prix_r",
+      "filename": "2025_abu_dhabi_grand_prix_r.csv",
+      "season": 2025,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1156,
+        "source_records_with_lap_time": 1156,
+        "valid_lap_records": 1156,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      },
+      "round_number": 24
+    },
+    {
+      "dataset_id": "2026_australian_grand_prix_r",
+      "filename": "2026_australian_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1006,
+        "source_records_with_lap_time": 1001,
+        "valid_lap_records": 1001,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 1
+    },
+    {
+      "dataset_id": "2026_chinese_grand_prix_r",
+      "filename": "2026_chinese_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Chinese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 920,
+        "source_records_with_lap_time": 919,
+        "valid_lap_records": 919,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 2
+    },
+    {
+      "dataset_id": "2026_japanese_grand_prix_r",
+      "filename": "2026_japanese_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1107,
+        "source_records_with_lap_time": 1106,
+        "valid_lap_records": 1106,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 3
+    },
+    {
+      "dataset_id": "2026_miami_grand_prix_r",
+      "filename": "2026_miami_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1040,
+        "source_records_with_lap_time": 1038,
+        "valid_lap_records": 1038,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 4
+    },
+    {
+      "dataset_id": "2026_canadian_grand_prix_r",
+      "filename": "2026_canadian_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1211,
+        "source_records_with_lap_time": 1206,
+        "valid_lap_records": 1206,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 5
+    },
+    {
+      "dataset_id": "2026_monaco_grand_prix_r",
+      "filename": "2026_monaco_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1452,
+        "source_records_with_lap_time": 1429,
+        "valid_lap_records": 1429,
+        "dropped_records": 23,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 6
+    },
+    {
+      "dataset_id": "2026_barcelona_grand_prix_r",
+      "filename": "2026_barcelona_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Barcelona Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1236,
+        "source_records_with_lap_time": 1233,
+        "valid_lap_records": 1233,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 7
+    },
+    {
+      "dataset_id": "2026_austrian_grand_prix_r",
+      "filename": "2026_austrian_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1339,
+        "source_records_with_lap_time": 1338,
+        "valid_lap_records": 1338,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 8
+    },
+    {
+      "dataset_id": "2026_british_grand_prix_r",
+      "filename": "2026_british_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1113,
+        "source_records_with_lap_time": 1111,
+        "valid_lap_records": 1111,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 9
+    },
+    {
+      "dataset_id": "2026_belgian_grand_prix_r",
+      "filename": "2026_belgian_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 872,
+        "source_records_with_lap_time": 871,
+        "valid_lap_records": 871,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 10
+    },
+    {
+      "dataset_id": "2026_hungarian_grand_prix_r",
+      "filename": "2026_hungarian_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1431,
+        "source_records_with_lap_time": 1429,
+        "valid_lap_records": 1429,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 11
+    },
+    {
+      "dataset_id": "2026_dutch_grand_prix_r",
+      "filename": "2026_dutch_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1368,
+        "source_records_with_lap_time": 1338,
+        "valid_lap_records": 1338,
+        "dropped_records": 30,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 12
+    },
+    {
+      "dataset_id": "2026_italian_grand_prix_r",
+      "filename": "2026_italian_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1054,
+        "source_records_with_lap_time": 1005,
+        "valid_lap_records": 1005,
+        "dropped_records": 49,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 13
+    },
+    {
+      "dataset_id": "2026_spanish_grand_prix_r",
+      "filename": "2026_spanish_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1106,
+        "source_records_with_lap_time": 1105,
+        "valid_lap_records": 1105,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 14
+    },
+    {
+      "dataset_id": "2026_azerbaijan_grand_prix_r",
+      "filename": "2026_azerbaijan_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 981,
+        "source_records_with_lap_time": 975,
+        "valid_lap_records": 975,
+        "dropped_records": 6,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 15
+    },
+    {
+      "dataset_id": "2026_bahrain_grand_prix_r",
+      "filename": "2026_bahrain_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1145,
+        "source_records_with_lap_time": 1126,
+        "valid_lap_records": 1126,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 16
+    },
+    {
+      "dataset_id": "2026_singapore_grand_prix_r",
+      "filename": "2026_singapore_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1240,
+        "source_records_with_lap_time": 1236,
+        "valid_lap_records": 1236,
+        "dropped_records": 4,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 17
+    },
+    {
+      "dataset_id": "2026_united_states_grand_prix_r",
+      "filename": "2026_united_states_grand_prix_r.csv",
+      "season": 2026,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1164,
+        "source_records_with_lap_time": 1163,
+        "valid_lap_records": 1163,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      },
+      "round_number": 18
+    },
+    {
+      "dataset_id": "british_gp_2024_tyre_pit_test",
+      "filename": "british_gp_2024_tyre_pit_test.csv",
+      "season": 2024,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 960,
+        "source_records_with_lap_time": 960,
+        "valid_lap_records": 960,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "abu_dhabi_2024_tyre_refresh",
+      "filename": "abu_dhabi_2024_tyre_refresh.csv",
+      "season": 2024,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1035,
+        "source_records_with_lap_time": 1033,
+        "valid_lap_records": 1033,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_bahrain_grand_prix_race_tyres",
+      "filename": "f1_2021_bahrain_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1027,
+        "source_records_with_lap_time": 1018,
+        "valid_lap_records": 1018,
+        "dropped_records": 9,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_emilia_romagna_grand_prix_race_tyres",
+      "filename": "f1_2021_emilia_romagna_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1127,
+        "source_records_with_lap_time": 1094,
+        "valid_lap_records": 1094,
+        "dropped_records": 33,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_portuguese_grand_prix_race_tyres",
+      "filename": "f1_2021_portuguese_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Portuguese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1245,
+        "source_records_with_lap_time": 1244,
+        "valid_lap_records": 1244,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_spanish_grand_prix_race_tyres",
+      "filename": "f1_2021_spanish_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1247,
+        "source_records_with_lap_time": 1245,
+        "valid_lap_records": 1245,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_monaco_grand_prix_race_tyres",
+      "filename": "f1_2021_monaco_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1419,
+        "source_records_with_lap_time": 1418,
+        "valid_lap_records": 1418,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_azerbaijan_grand_prix_race_tyres",
+      "filename": "f1_2021_azerbaijan_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 943,
+        "source_records_with_lap_time": 832,
+        "valid_lap_records": 832,
+        "dropped_records": 111,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_french_grand_prix_race_tyres",
+      "filename": "f1_2021_french_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "French Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1051,
+        "source_records_with_lap_time": 1051,
+        "valid_lap_records": 1051,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_styrian_grand_prix_race_tyres",
+      "filename": "f1_2021_styrian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Styrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1296,
+        "source_records_with_lap_time": 1294,
+        "valid_lap_records": 1294,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_austrian_grand_prix_race_tyres",
+      "filename": "f1_2021_austrian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1338,
+        "source_records_with_lap_time": 1336,
+        "valid_lap_records": 1336,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_british_grand_prix_race_tyres",
+      "filename": "f1_2021_british_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 970,
+        "source_records_with_lap_time": 925,
+        "valid_lap_records": 925,
+        "dropped_records": 45,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_hungarian_grand_prix_race_tyres",
+      "filename": "f1_2021_hungarian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 985,
+        "source_records_with_lap_time": 950,
+        "valid_lap_records": 950,
+        "dropped_records": 35,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_belgian_grand_prix_race_tyres",
+      "filename": "f1_2021_belgian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 60,
+        "source_records_with_lap_time": 20,
+        "valid_lap_records": 20,
+        "dropped_records": 40,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_dutch_grand_prix_race_tyres",
+      "filename": "f1_2021_dutch_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1361,
+        "source_records_with_lap_time": 1361,
+        "valid_lap_records": 1361,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_italian_grand_prix_race_tyres",
+      "filename": "f1_2021_italian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 891,
+        "source_records_with_lap_time": 856,
+        "valid_lap_records": 856,
+        "dropped_records": 35,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_russian_grand_prix_race_tyres",
+      "filename": "f1_2021_russian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Russian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1025,
+        "source_records_with_lap_time": 1019,
+        "valid_lap_records": 1019,
+        "dropped_records": 6,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_turkish_grand_prix_race_tyres",
+      "filename": "f1_2021_turkish_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Turkish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1147,
+        "source_records_with_lap_time": 1146,
+        "valid_lap_records": 1146,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_united_states_grand_prix_race_tyres",
+      "filename": "f1_2021_united_states_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1044,
+        "source_records_with_lap_time": 1044,
+        "valid_lap_records": 1044,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_mexico_city_grand_prix_race_tyres",
+      "filename": "f1_2021_mexico_city_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1261,
+        "source_records_with_lap_time": 1259,
+        "valid_lap_records": 1259,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_sao_paulo_grand_prix_race_tyres",
+      "filename": "f1_2021_sao_paulo_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1360,
+        "source_records_with_lap_time": 1360,
+        "valid_lap_records": 1360,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_qatar_grand_prix_race_tyres",
+      "filename": "f1_2021_qatar_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1114,
+        "source_records_with_lap_time": 1111,
+        "valid_lap_records": 1111,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_saudi_arabian_grand_prix_race_tyres",
+      "filename": "f1_2021_saudi_arabian_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 845,
+        "source_records_with_lap_time": 731,
+        "valid_lap_records": 731,
+        "dropped_records": 114,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2021_abu_dhabi_grand_prix_race_tyres",
+      "filename": "f1_2021_abu_dhabi_grand_prix_race_tyres.csv",
+      "season": 2021,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1000,
+        "source_records_with_lap_time": 989,
+        "valid_lap_records": 989,
+        "dropped_records": 11,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_bahrain_grand_prix_race_tyres",
+      "filename": "f1_2022_bahrain_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1125,
+        "source_records_with_lap_time": 1118,
+        "valid_lap_records": 1118,
+        "dropped_records": 7,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_saudi_arabian_grand_prix_race_tyres",
+      "filename": "f1_2022_saudi_arabian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 820,
+        "source_records_with_lap_time": 772,
+        "valid_lap_records": 772,
+        "dropped_records": 48,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_australian_grand_prix_race_tyres",
+      "filename": "f1_2022_australian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1045,
+        "source_records_with_lap_time": 1026,
+        "valid_lap_records": 1026,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_emilia_romagna_grand_prix_race_tyres",
+      "filename": "f1_2022_emilia_romagna_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1132,
+        "source_records_with_lap_time": 1126,
+        "valid_lap_records": 1126,
+        "dropped_records": 6,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_miami_grand_prix_race_tyres",
+      "filename": "f1_2022_miami_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1057,
+        "source_records_with_lap_time": 1022,
+        "valid_lap_records": 1022,
+        "dropped_records": 35,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_spanish_grand_prix_race_tyres",
+      "filename": "f1_2022_spanish_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1230,
+        "source_records_with_lap_time": 1230,
+        "valid_lap_records": 1230,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_monaco_grand_prix_race_tyres",
+      "filename": "f1_2022_monaco_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1179,
+        "source_records_with_lap_time": 1153,
+        "valid_lap_records": 1153,
+        "dropped_records": 26,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_azerbaijan_grand_prix_race_tyres",
+      "filename": "f1_2022_azerbaijan_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 891,
+        "source_records_with_lap_time": 872,
+        "valid_lap_records": 872,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_canadian_grand_prix_race_tyres",
+      "filename": "f1_2022_canadian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1264,
+        "source_records_with_lap_time": 1262,
+        "valid_lap_records": 1262,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_british_grand_prix_race_tyres",
+      "filename": "f1_2022_british_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 815,
+        "source_records_with_lap_time": 773,
+        "valid_lap_records": 773,
+        "dropped_records": 42,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_austrian_grand_prix_race_tyres",
+      "filename": "f1_2022_austrian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1324,
+        "source_records_with_lap_time": 1323,
+        "valid_lap_records": 1323,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_french_grand_prix_race_tyres",
+      "filename": "f1_2022_french_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "French Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 958,
+        "source_records_with_lap_time": 945,
+        "valid_lap_records": 945,
+        "dropped_records": 13,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_hungarian_grand_prix_race_tyres",
+      "filename": "f1_2022_hungarian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1383,
+        "source_records_with_lap_time": 1382,
+        "valid_lap_records": 1382,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_belgian_grand_prix_race_tyres",
+      "filename": "f1_2022_belgian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 792,
+        "source_records_with_lap_time": 752,
+        "valid_lap_records": 752,
+        "dropped_records": 40,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_dutch_grand_prix_race_tyres",
+      "filename": "f1_2022_dutch_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1392,
+        "source_records_with_lap_time": 1388,
+        "valid_lap_records": 1388,
+        "dropped_records": 4,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_italian_grand_prix_race_tyres",
+      "filename": "f1_2022_italian_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 971,
+        "source_records_with_lap_time": 968,
+        "valid_lap_records": 968,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_singapore_grand_prix_race_tyres",
+      "filename": "f1_2022_singapore_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 945,
+        "source_records_with_lap_time": 837,
+        "valid_lap_records": 837,
+        "dropped_records": 108,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_japanese_grand_prix_race_tyres",
+      "filename": "f1_2022_japanese_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 507,
+        "source_records_with_lap_time": 432,
+        "valid_lap_records": 432,
+        "dropped_records": 75,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_united_states_grand_prix_race_tyres",
+      "filename": "f1_2022_united_states_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 992,
+        "source_records_with_lap_time": 918,
+        "valid_lap_records": 918,
+        "dropped_records": 74,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_mexico_city_grand_prix_race_tyres",
+      "filename": "f1_2022_mexico_city_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1379,
+        "source_records_with_lap_time": 1378,
+        "valid_lap_records": 1378,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_sao_paulo_grand_prix_race_tyres",
+      "filename": "f1_2022_sao_paulo_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1259,
+        "source_records_with_lap_time": 1256,
+        "valid_lap_records": 1256,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2022_abu_dhabi_grand_prix_race_tyres",
+      "filename": "f1_2022_abu_dhabi_grand_prix_race_tyres.csv",
+      "season": 2022,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1117,
+        "source_records_with_lap_time": 1117,
+        "valid_lap_records": 1117,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_bahrain_grand_prix_race_tyres",
+      "filename": "f1_2023_bahrain_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1056,
+        "source_records_with_lap_time": 1055,
+        "valid_lap_records": 1055,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_saudi_arabian_grand_prix_race_tyres",
+      "filename": "f1_2023_saudi_arabian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 943,
+        "source_records_with_lap_time": 942,
+        "valid_lap_records": 942,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_australian_grand_prix_race_tyres",
+      "filename": "f1_2023_australian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1003,
+        "source_records_with_lap_time": 928,
+        "valid_lap_records": 928,
+        "dropped_records": 75,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_azerbaijan_grand_prix_race_tyres",
+      "filename": "f1_2023_azerbaijan_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 962,
+        "source_records_with_lap_time": 961,
+        "valid_lap_records": 961,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_miami_grand_prix_race_tyres",
+      "filename": "f1_2023_miami_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1138,
+        "source_records_with_lap_time": 1138,
+        "valid_lap_records": 1138,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_monaco_grand_prix_race_tyres",
+      "filename": "f1_2023_monaco_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1515,
+        "source_records_with_lap_time": 1513,
+        "valid_lap_records": 1513,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_spanish_grand_prix_race_tyres",
+      "filename": "f1_2023_spanish_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1312,
+        "source_records_with_lap_time": 1312,
+        "valid_lap_records": 1312,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_canadian_grand_prix_race_tyres",
+      "filename": "f1_2023_canadian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1317,
+        "source_records_with_lap_time": 1314,
+        "valid_lap_records": 1314,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_austrian_grand_prix_race_tyres",
+      "filename": "f1_2023_austrian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1354,
+        "source_records_with_lap_time": 1352,
+        "valid_lap_records": 1352,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_british_grand_prix_race_tyres",
+      "filename": "f1_2023_british_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 971,
+        "source_records_with_lap_time": 970,
+        "valid_lap_records": 970,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_hungarian_grand_prix_race_tyres",
+      "filename": "f1_2023_hungarian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1252,
+        "source_records_with_lap_time": 1252,
+        "valid_lap_records": 1252,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_belgian_grand_prix_race_tyres",
+      "filename": "f1_2023_belgian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 816,
+        "source_records_with_lap_time": 815,
+        "valid_lap_records": 815,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_dutch_grand_prix_race_tyres",
+      "filename": "f1_2023_dutch_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1343,
+        "source_records_with_lap_time": 1324,
+        "valid_lap_records": 1324,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_italian_grand_prix_race_tyres",
+      "filename": "f1_2023_italian_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 957,
+        "source_records_with_lap_time": 948,
+        "valid_lap_records": 948,
+        "dropped_records": 9,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_singapore_grand_prix_race_tyres",
+      "filename": "f1_2023_singapore_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1088,
+        "source_records_with_lap_time": 1083,
+        "valid_lap_records": 1083,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_japanese_grand_prix_race_tyres",
+      "filename": "f1_2023_japanese_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 880,
+        "source_records_with_lap_time": 878,
+        "valid_lap_records": 878,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_qatar_grand_prix_race_tyres",
+      "filename": "f1_2023_qatar_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1006,
+        "source_records_with_lap_time": 1005,
+        "valid_lap_records": 1005,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_united_states_grand_prix_race_tyres",
+      "filename": "f1_2023_united_states_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1014,
+        "source_records_with_lap_time": 1014,
+        "valid_lap_records": 1014,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_mexico_city_grand_prix_race_tyres",
+      "filename": "f1_2023_mexico_city_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1282,
+        "source_records_with_lap_time": 1260,
+        "valid_lap_records": 1260,
+        "dropped_records": 22,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_sao_paulo_grand_prix_race_tyres",
+      "filename": "f1_2023_sao_paulo_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1108,
+        "source_records_with_lap_time": 1089,
+        "valid_lap_records": 1089,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_las_vegas_grand_prix_race_tyres",
+      "filename": "f1_2023_las_vegas_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Las Vegas Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 946,
+        "source_records_with_lap_time": 943,
+        "valid_lap_records": 943,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2023_abu_dhabi_grand_prix_race_tyres",
+      "filename": "f1_2023_abu_dhabi_grand_prix_race_tyres.csv",
+      "season": 2023,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1157,
+        "source_records_with_lap_time": 1157,
+        "valid_lap_records": 1157,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_bahrain_grand_prix_race_tyres",
+      "filename": "f1_2024_bahrain_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1129,
+        "source_records_with_lap_time": 1128,
+        "valid_lap_records": 1128,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_saudi_arabian_grand_prix_race_tyres",
+      "filename": "f1_2024_saudi_arabian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 901,
+        "source_records_with_lap_time": 899,
+        "valid_lap_records": 899,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_australian_grand_prix_race_tyres",
+      "filename": "f1_2024_australian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 998,
+        "source_records_with_lap_time": 995,
+        "valid_lap_records": 995,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_japanese_grand_prix_race_tyres",
+      "filename": "f1_2024_japanese_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 907,
+        "source_records_with_lap_time": 881,
+        "valid_lap_records": 881,
+        "dropped_records": 26,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_chinese_grand_prix_race_tyres",
+      "filename": "f1_2024_chinese_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Chinese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1032,
+        "source_records_with_lap_time": 1029,
+        "valid_lap_records": 1029,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_miami_grand_prix_race_tyres",
+      "filename": "f1_2024_miami_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1111,
+        "source_records_with_lap_time": 1110,
+        "valid_lap_records": 1110,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_emilia_romagna_grand_prix_race_tyres",
+      "filename": "f1_2024_emilia_romagna_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1238,
+        "source_records_with_lap_time": 1238,
+        "valid_lap_records": 1238,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_monaco_grand_prix_race_tyres",
+      "filename": "f1_2024_monaco_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1237,
+        "source_records_with_lap_time": 1229,
+        "valid_lap_records": 1229,
+        "dropped_records": 8,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_canadian_grand_prix_race_tyres",
+      "filename": "f1_2024_canadian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1272,
+        "source_records_with_lap_time": 1267,
+        "valid_lap_records": 1267,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_spanish_grand_prix_race_tyres",
+      "filename": "f1_2024_spanish_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1310,
+        "source_records_with_lap_time": 1310,
+        "valid_lap_records": 1310,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_austrian_grand_prix_race_tyres",
+      "filename": "f1_2024_austrian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1405,
+        "source_records_with_lap_time": 1405,
+        "valid_lap_records": 1405,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_british_grand_prix_race_tyres",
+      "filename": "f1_2024_british_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 960,
+        "source_records_with_lap_time": 960,
+        "valid_lap_records": 960,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_hungarian_grand_prix_race_tyres",
+      "filename": "f1_2024_hungarian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1355,
+        "source_records_with_lap_time": 1355,
+        "valid_lap_records": 1355,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_belgian_grand_prix_race_tyres",
+      "filename": "f1_2024_belgian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 841,
+        "source_records_with_lap_time": 840,
+        "valid_lap_records": 840,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_dutch_grand_prix_race_tyres",
+      "filename": "f1_2024_dutch_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1426,
+        "source_records_with_lap_time": 1426,
+        "valid_lap_records": 1426,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_italian_grand_prix_race_tyres",
+      "filename": "f1_2024_italian_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1008,
+        "source_records_with_lap_time": 1008,
+        "valid_lap_records": 1008,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_azerbaijan_grand_prix_race_tyres",
+      "filename": "f1_2024_azerbaijan_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 973,
+        "source_records_with_lap_time": 971,
+        "valid_lap_records": 971,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_singapore_grand_prix_race_tyres",
+      "filename": "f1_2024_singapore_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1177,
+        "source_records_with_lap_time": 1177,
+        "valid_lap_records": 1177,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_united_states_grand_prix_race_tyres",
+      "filename": "f1_2024_united_states_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1059,
+        "source_records_with_lap_time": 1058,
+        "valid_lap_records": 1058,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_mexico_city_grand_prix_race_tyres",
+      "filename": "f1_2024_mexico_city_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1215,
+        "source_records_with_lap_time": 1213,
+        "valid_lap_records": 1213,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_sao_paulo_grand_prix_race_tyres",
+      "filename": "f1_2024_sao_paulo_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1134,
+        "source_records_with_lap_time": 1116,
+        "valid_lap_records": 1116,
+        "dropped_records": 18,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_las_vegas_grand_prix_race_tyres",
+      "filename": "f1_2024_las_vegas_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Las Vegas Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 938,
+        "source_records_with_lap_time": 938,
+        "valid_lap_records": 938,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_qatar_grand_prix_race_tyres",
+      "filename": "f1_2024_qatar_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 943,
+        "source_records_with_lap_time": 939,
+        "valid_lap_records": 939,
+        "dropped_records": 4,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2024_abu_dhabi_grand_prix_race_tyres",
+      "filename": "f1_2024_abu_dhabi_grand_prix_race_tyres.csv",
+      "season": 2024,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1035,
+        "source_records_with_lap_time": 1033,
+        "valid_lap_records": 1033,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_australian_grand_prix_race_tyres",
+      "filename": "f1_2025_australian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 927,
+        "source_records_with_lap_time": 920,
+        "valid_lap_records": 920,
+        "dropped_records": 7,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_chinese_grand_prix_race_tyres",
+      "filename": "f1_2025_chinese_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Chinese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1065,
+        "source_records_with_lap_time": 1065,
+        "valid_lap_records": 1065,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_japanese_grand_prix_race_tyres",
+      "filename": "f1_2025_japanese_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1059,
+        "source_records_with_lap_time": 1059,
+        "valid_lap_records": 1059,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_bahrain_grand_prix_race_tyres",
+      "filename": "f1_2025_bahrain_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1128,
+        "source_records_with_lap_time": 1128,
+        "valid_lap_records": 1128,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_saudi_arabian_grand_prix_race_tyres",
+      "filename": "f1_2025_saudi_arabian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Saudi Arabian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 898,
+        "source_records_with_lap_time": 897,
+        "valid_lap_records": 897,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_miami_grand_prix_race_tyres",
+      "filename": "f1_2025_miami_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1005,
+        "source_records_with_lap_time": 1002,
+        "valid_lap_records": 1002,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_emilia_romagna_grand_prix_race_tyres",
+      "filename": "f1_2025_emilia_romagna_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Emilia Romagna Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1207,
+        "source_records_with_lap_time": 1205,
+        "valid_lap_records": 1205,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_monaco_grand_prix_race_tyres",
+      "filename": "f1_2025_monaco_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1425,
+        "source_records_with_lap_time": 1423,
+        "valid_lap_records": 1423,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_spanish_grand_prix_race_tyres",
+      "filename": "f1_2025_spanish_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1203,
+        "source_records_with_lap_time": 1202,
+        "valid_lap_records": 1202,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_canadian_grand_prix_race_tyres",
+      "filename": "f1_2025_canadian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1349,
+        "source_records_with_lap_time": 1346,
+        "valid_lap_records": 1346,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_austrian_grand_prix_race_tyres",
+      "filename": "f1_2025_austrian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1126,
+        "source_records_with_lap_time": 1124,
+        "valid_lap_records": 1124,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_british_grand_prix_race_tyres",
+      "filename": "f1_2025_british_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 825,
+        "source_records_with_lap_time": 822,
+        "valid_lap_records": 822,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_belgian_grand_prix_race_tyres",
+      "filename": "f1_2025_belgian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 879,
+        "source_records_with_lap_time": 879,
+        "valid_lap_records": 879,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_hungarian_grand_prix_race_tyres",
+      "filename": "f1_2025_hungarian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1368,
+        "source_records_with_lap_time": 1368,
+        "valid_lap_records": 1368,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_dutch_grand_prix_race_tyres",
+      "filename": "f1_2025_dutch_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1364,
+        "source_records_with_lap_time": 1362,
+        "valid_lap_records": 1362,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_italian_grand_prix_race_tyres",
+      "filename": "f1_2025_italian_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 974,
+        "source_records_with_lap_time": 974,
+        "valid_lap_records": 974,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_azerbaijan_grand_prix_race_tyres",
+      "filename": "f1_2025_azerbaijan_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 968,
+        "source_records_with_lap_time": 965,
+        "valid_lap_records": 965,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_singapore_grand_prix_race_tyres",
+      "filename": "f1_2025_singapore_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1229,
+        "source_records_with_lap_time": 1229,
+        "valid_lap_records": 1229,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_united_states_grand_prix_race_tyres",
+      "filename": "f1_2025_united_states_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1067,
+        "source_records_with_lap_time": 1066,
+        "valid_lap_records": 1066,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_mexico_city_grand_prix_race_tyres",
+      "filename": "f1_2025_mexico_city_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Mexico City Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1263,
+        "source_records_with_lap_time": 1262,
+        "valid_lap_records": 1262,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_sao_paulo_grand_prix_race_tyres",
+      "filename": "f1_2025_sao_paulo_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "S\u00e3o Paulo Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1251,
+        "source_records_with_lap_time": 1249,
+        "valid_lap_records": 1249,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_las_vegas_grand_prix_race_tyres",
+      "filename": "f1_2025_las_vegas_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Las Vegas Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 886,
+        "source_records_with_lap_time": 885,
+        "valid_lap_records": 885,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_qatar_grand_prix_race_tyres",
+      "filename": "f1_2025_qatar_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Qatar Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1067,
+        "source_records_with_lap_time": 1066,
+        "valid_lap_records": 1066,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2025_abu_dhabi_grand_prix_race_tyres",
+      "filename": "f1_2025_abu_dhabi_grand_prix_race_tyres.csv",
+      "season": 2025,
+      "grand_prix": "Abu Dhabi Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1156,
+        "source_records_with_lap_time": 1156,
+        "valid_lap_records": 1156,
+        "dropped_records": 0,
+        "timing_status": "complete_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_australian_grand_prix_race_tyres",
+      "filename": "f1_2026_australian_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Australian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1006,
+        "source_records_with_lap_time": 1001,
+        "valid_lap_records": 1001,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_chinese_grand_prix_race_tyres",
+      "filename": "f1_2026_chinese_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Chinese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 920,
+        "source_records_with_lap_time": 919,
+        "valid_lap_records": 919,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_japanese_grand_prix_race_tyres",
+      "filename": "f1_2026_japanese_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Japanese Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1107,
+        "source_records_with_lap_time": 1106,
+        "valid_lap_records": 1106,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_miami_grand_prix_race_tyres",
+      "filename": "f1_2026_miami_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Miami Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1040,
+        "source_records_with_lap_time": 1038,
+        "valid_lap_records": 1038,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_canadian_grand_prix_race_tyres",
+      "filename": "f1_2026_canadian_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Canadian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1211,
+        "source_records_with_lap_time": 1206,
+        "valid_lap_records": 1206,
+        "dropped_records": 5,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_monaco_grand_prix_race_tyres",
+      "filename": "f1_2026_monaco_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Monaco Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1452,
+        "source_records_with_lap_time": 1429,
+        "valid_lap_records": 1429,
+        "dropped_records": 23,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_barcelona_grand_prix_race_tyres",
+      "filename": "f1_2026_barcelona_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Barcelona Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1236,
+        "source_records_with_lap_time": 1233,
+        "valid_lap_records": 1233,
+        "dropped_records": 3,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_austrian_grand_prix_race_tyres",
+      "filename": "f1_2026_austrian_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Austrian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1339,
+        "source_records_with_lap_time": 1338,
+        "valid_lap_records": 1338,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_british_grand_prix_race_tyres",
+      "filename": "f1_2026_british_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "British Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1113,
+        "source_records_with_lap_time": 1111,
+        "valid_lap_records": 1111,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_belgian_grand_prix_race_tyres",
+      "filename": "f1_2026_belgian_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Belgian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 872,
+        "source_records_with_lap_time": 871,
+        "valid_lap_records": 871,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_hungarian_grand_prix_race_tyres",
+      "filename": "f1_2026_hungarian_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Hungarian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1431,
+        "source_records_with_lap_time": 1429,
+        "valid_lap_records": 1429,
+        "dropped_records": 2,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_dutch_grand_prix_race_tyres",
+      "filename": "f1_2026_dutch_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Dutch Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1368,
+        "source_records_with_lap_time": 1338,
+        "valid_lap_records": 1338,
+        "dropped_records": 30,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_italian_grand_prix_race_tyres",
+      "filename": "f1_2026_italian_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Italian Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1054,
+        "source_records_with_lap_time": 1005,
+        "valid_lap_records": 1005,
+        "dropped_records": 49,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_spanish_grand_prix_race_tyres",
+      "filename": "f1_2026_spanish_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Spanish Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1106,
+        "source_records_with_lap_time": 1105,
+        "valid_lap_records": 1105,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_azerbaijan_grand_prix_race_tyres",
+      "filename": "f1_2026_azerbaijan_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Azerbaijan Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 981,
+        "source_records_with_lap_time": 975,
+        "valid_lap_records": 975,
+        "dropped_records": 6,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_bahrain_grand_prix_race_tyres",
+      "filename": "f1_2026_bahrain_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Bahrain Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1145,
+        "source_records_with_lap_time": 1126,
+        "valid_lap_records": 1126,
+        "dropped_records": 19,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_singapore_grand_prix_race_tyres",
+      "filename": "f1_2026_singapore_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "Singapore Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1240,
+        "source_records_with_lap_time": 1236,
+        "valid_lap_records": 1236,
+        "dropped_records": 4,
+        "timing_status": "partial_timing_records"
+      }
+    },
+    {
+      "dataset_id": "f1_2026_united_states_grand_prix_race_tyres",
+      "filename": "f1_2026_united_states_grand_prix_race_tyres.csv",
+      "season": 2026,
+      "grand_prix": "United States Grand Prix",
+      "session_type": "R",
+      "data_type": "lap_times",
+      "source": "FastF1",
+      "status": "imported",
+      "quality": {
+        "source_records": 1164,
+        "source_records_with_lap_time": 1163,
+        "valid_lap_records": 1163,
+        "dropped_records": 1,
+        "timing_status": "partial_timing_records"
+      }
+    }
+  ]
+}
